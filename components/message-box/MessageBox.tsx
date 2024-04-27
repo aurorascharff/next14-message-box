@@ -11,17 +11,14 @@ export default async function MessageBox() {
 
   return (
     <div className="flex w-full flex-col shadow-xl">
-      <span className="font-display bg-slate-500 p-6 text-lg text-white">Messages</span>
+      <h1 className="bg-slate-500 p-6 text-lg text-white">Messages</h1>
       <div className="grid border-x border-b border-gray-300">
-        {messages.length === 0 ? (
-          <div className="flex items-center justify-center py-8 text-gray-50">No messages</div>
-        ) : (
-          <MessagesListener messages={messages}>
-            {messages.map(message => {
-              return <MessageDisplay userId={user.id} key={message.id} message={message} />;
-            })}
-          </MessagesListener>
-        )}
+        <MessagesListener>
+          {messages.length === 0 && <div className="grid place-content-center text-gray-500">No messages</div>}
+          {messages.map(message => {
+            return <MessageDisplay userId={user.id} key={message.id} message={message} />;
+          })}
+        </MessagesListener>
         <MessageInput userId={user.id} />
       </div>
     </div>

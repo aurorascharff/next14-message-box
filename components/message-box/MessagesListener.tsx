@@ -1,13 +1,11 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import type { Message } from '@prisma/client';
 
 // Found on:
 // https://stackblitz.com/edit/scroll-to-bottom-react-chat-app?file=src%2FApp.js
 
 type Props = {
-  messages: Message[];
   children: React.ReactNode;
 };
 
