@@ -22,11 +22,10 @@ export default function MessageDisplay({ message, userId }: Props) {
         {' - '}
         <span className="text-nowrap text-sm italic">{message.createdAt.toLocaleString('en-US')}</span>
       </span>
-      <span className="text-wrap break-all">
+      <span>
         {message.content}
         {message.isSending && <span className="ml-1 text-gray-400"> Sending ...</span>}
       </span>
-      {message.content}
     </div>
   );
 }
