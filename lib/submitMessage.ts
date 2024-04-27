@@ -23,7 +23,7 @@ export async function submitMessage(_prevState: State, formData: FormData): Prom
 
   if (!result.success) {
     return {
-      error: 'Invalid message',
+      error: 'Invalid message!',
       success: false,
       timestamp,
     };
@@ -37,7 +37,7 @@ export async function submitMessage(_prevState: State, formData: FormData): Prom
 
   if (messages.length > 5) {
     return {
-      error: 'Message limit reached',
+      error: 'Your message limit has been reached.',
       success: false,
       timestamp,
     };
@@ -49,7 +49,7 @@ export async function submitMessage(_prevState: State, formData: FormData): Prom
     });
   } catch (error) {
     return {
-      error: 'Failed to create message',
+      error: 'Failed to create message!',
       success: false,
       timestamp,
     };
