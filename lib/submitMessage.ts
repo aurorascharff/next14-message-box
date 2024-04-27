@@ -15,15 +15,6 @@ export async function submitMessage(_prevState: State, formData: FormData): Prom
   await slow();
 
   const timestamp = new Date();
-  const messages = await prisma.message.findMany();
-
-  if (messages.length > 5) {
-    return {
-      error: 'Message limit reached',
-      success: false,
-      timestamp,
-    };
-  }
 
   const result = messageSchema.safeParse({
     message: formData.get('message'),
@@ -33,6 +24,20 @@ export async function submitMessage(_prevState: State, formData: FormData): Prom
   if (!result.success) {
     return {
       error: 'Invalid message',
+      success: false,
+      timestamp,
+    };
+  }
+
+  const messages = await prisma.message.findMany({
+    where: {
+      createdById: result.data.createdById,
+    },
+  });
+
+  if (messages.length > 5) {
+    return {
+      error: 'Message limit reached',
       success: false,
       timestamp,
     };
