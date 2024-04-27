@@ -21,7 +21,7 @@ export default function MessageInput({ userId }: { userId: string }) {
 
   return (
     <>
-      <form ref={formRef} action={formAction} className="flex flex-row gap-4 border-t border-gray-300 p-6 px-6">
+      <form ref={formRef} action={formAction} className="flex flex-col gap-2 border-t border-gray-300 p-6 px-6">
         <input
           required
           minLength={1}
@@ -32,7 +32,7 @@ export default function MessageInput({ userId }: { userId: string }) {
         <input type="hidden" name="userId" value={userId} />
         <button
           disabled={pending}
-          className="text-nowrap rounded bg-slate-500 px-3 py-1 text-white disabled:bg-gray-300"
+          className="w-fit self-end text-nowrap rounded bg-slate-500 px-3 py-1 text-white disabled:bg-gray-300"
           type="submit"
         >
           {pending ? 'Sending ...' : 'Send'}
