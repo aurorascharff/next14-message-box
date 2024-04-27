@@ -22,7 +22,7 @@ export default function MessageDisplay({ message, userId }: Props) {
         {' - '}
         <span className="text-nowrap text-sm italic">{message.createdAt.toLocaleString()}</span>
       </span>
-      <span className="text-wrap break-all">{message.content}</span>
+      {message.content}
     </div>
   );
 }
