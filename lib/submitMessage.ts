@@ -35,7 +35,7 @@ export async function submitMessage(_prevState: State, formData: FormData): Prom
     },
   });
 
-  if (messages.length > 5) {
+  if (messages.length > 10) {
     return {
       error: 'Your message limit has been reached.',
       success: false,
