@@ -5,8 +5,8 @@ import { prisma } from '@/db';
 import { slow } from '@/utils/slow';
 
 type State = {
-  error?: string;
   success: boolean;
+  error?: string;
   timestamp?: Date;
 };
 

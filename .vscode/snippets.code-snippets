@@ -1,0 +1,15 @@
+{
+		"jokeState": {
+			"scope": "typescript",
+			"prefix": "messageState",
+			"body": [
+				"type State = {",
+				"\tsuccess: boolean;",
+				"\terror?: string;",
+				"\ttimestamp?: Date;",
+				"}",
+				"$0"
+			],
+			"description": "Define a TypeScript initial state type"
+		}
+}
