@@ -7,14 +7,15 @@ import React, { useEffect, useRef } from 'react';
 
 type Props = {
   children: React.ReactNode;
+  className?: string;
 };
 
-export default function NewMessageListener({ children }: Props) {
-  const messagesRef = useRef<null | HTMLDivElement>(null);
+export default function DomNodeListener({ children, className }: Props) {
+  const ref = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
-    if (messagesRef) {
-      messagesRef.current?.addEventListener('DOMNodeInserted', event => {
+    if (ref) {
+      ref.current?.addEventListener('DOMNodeInserted', event => {
         const { currentTarget: target } = event;
         if (target instanceof HTMLElement) {
           target.scroll({ behavior: 'smooth', top: target.scrollHeight });
@@ -24,7 +25,7 @@ export default function NewMessageListener({ children }: Props) {
   }, []);
 
   return (
-    <div ref={messagesRef} className="grid h-64 gap-4 overflow-auto p-4">
+    <div ref={ref} className={className}>
       {children}
     </div>
   );
