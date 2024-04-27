@@ -1,13 +1,13 @@
 import React from 'react';
 import { cn } from '@/utils/cn';
-import type { Message } from '@prisma/client';
+import type { OptimisticMessage } from './Messages';
 
 type Props = {
-  message: Message;
+  message: OptimisticMessage;
   userId: string;
 };
 
-export default async function MessageDisplay({ message, userId }: Props) {
+export default function MessageDisplay({ message, userId }: Props) {
   const isWrittenByUser = userId === message.createdById;
 
   return (
@@ -20,9 +20,12 @@ export default async function MessageDisplay({ message, userId }: Props) {
       <span className="text-slate-700">
         <span className="font-bold">{isWrittenByUser ? 'You' : 'Them'}</span>
         {' - '}
-        <span className="text-nowrap text-sm italic">{message.createdAt.toLocaleString()}</span>
+        <span className="text-nowrap text-sm italic">{message.createdAt.toLocaleString('en-US')}</span>
       </span>
-      <span className="text-wrap break-all">{message.content}</span>
+      <span className="text-wrap break-all">
+        {message.content}
+        {message.isSending && <span className="ml-1 text-gray-400"> Sending ...</span>}
+      </span>
     </div>
   );
 }

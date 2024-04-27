@@ -17,8 +17,8 @@ export async function submitMessage(_prevState: State, formData: FormData): Prom
   const timestamp = new Date();
 
   const result = messageSchema.safeParse({
-    message: formData.get('message'),
-    userId: formData.get('userId'),
+    content: formData.get('content'),
+    createdById: formData.get('userId'),
   });
 
   if (!result.success) {
