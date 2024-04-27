@@ -5,8 +5,8 @@ import type { Metadata } from 'next';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  description: 'Next 14 Message Box',
-  title: 'Next 14 message box example using server actions and useActionState',
+  description: 'Next 14 message box example using server actions and useActionState',
+  title: 'Next 14 Message Box',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

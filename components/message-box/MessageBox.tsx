@@ -10,7 +10,7 @@ export default async function MessageBox() {
   const user = await getUser();
 
   return (
-    <div className="flex w-full flex-col">
+    <div className="flex w-full flex-col shadow-xl">
       <span className="font-display bg-slate-500 p-6 text-lg text-white">Messages</span>
       <div className="grid border-x border-b border-gray-300">
         {messages.length === 0 ? (

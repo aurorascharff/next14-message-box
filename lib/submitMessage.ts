@@ -14,25 +14,28 @@ export async function submitMessage(_prevState: State, formData: FormData): Prom
     return setTimeout(resolve, 1000);
   });
 
+  const timestamp = new Date();
   const messages = await prisma.message.findMany();
 
   if (messages.length > 5) {
     return {
       error: 'Message limit reached',
       success: false,
-      timestamp: new Date(),
+      timestamp,
     };
   }
 
-  prisma.message.create({
-    content: formData.get('message') as string,
-    createdById: formData.get('userId') as string,
+  await prisma.message.create({
+    data: {
+      content: formData.get('message') as string,
+      createdById: formData.get('userId') as string,
+    },
   });
 
   revalidatePath('/');
 
   return {
     success: true,
-    timestamp: timestamp,
+    timestamp,
   };
 }

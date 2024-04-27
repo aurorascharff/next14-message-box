@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import type { Message } from '@/db/message';
+import type { Message } from '@prisma/client';
 
 type Props = {
   messages: Message[];
