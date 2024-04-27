@@ -32,7 +32,7 @@ export default function Messages({ messages, userId }: Props) {
 
   return (
     <div className="grid border-x border-b border-gray-300">
-      <DomNodeListener className="grid h-64 gap-4 overflow-auto p-4">
+      <DomNodeListener className="grid h-80 content-start gap-4 overflow-auto p-4">
         {optimisticMessages.length === 0 && <div className="grid place-content-center text-gray-500">No messages</div>}
         {optimisticMessages.map(message => {
           return <MessageDisplay userId={userId} key={message.id} message={message} />;
