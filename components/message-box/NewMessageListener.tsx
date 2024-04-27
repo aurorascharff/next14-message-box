@@ -9,7 +9,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export default function MessagesListener({ children }: Props) {
+export default function NewMessageListener({ children }: Props) {
   const messagesRef = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
