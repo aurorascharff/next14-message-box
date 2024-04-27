@@ -17,13 +17,13 @@ export async function submitMessage(_prevState: State, formData: FormData): Prom
   const timestamp = new Date();
 
   const result = messageSchema.safeParse({
-    message: formData.get('message'),
-    userId: formData.get('userId'),
+    content: formData.get('content'),
+    createdById: formData.get('userId'),
   });
 
   if (!result.success) {
     return {
-      error: 'Invalid message',
+      error: 'Invalid message!',
       success: false,
       timestamp,
     };
@@ -37,7 +37,7 @@ export async function submitMessage(_prevState: State, formData: FormData): Prom
 
   if (messages.length > 5) {
     return {
-      error: 'Message limit reached',
+      error: 'Your message limit has been reached.',
       success: false,
       timestamp,
     };
@@ -49,7 +49,7 @@ export async function submitMessage(_prevState: State, formData: FormData): Prom
     });
   } catch (error) {
     return {
-      error: 'Failed to create message',
+      error: 'Failed to create message!',
       success: false,
       timestamp,
     };

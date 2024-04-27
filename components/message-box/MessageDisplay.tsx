@@ -7,7 +7,7 @@ type Props = {
   userId: string;
 };
 
-export default async function MessageDisplay({ message, userId }: Props) {
+export default function MessageDisplay({ message, userId }: Props) {
   const isWrittenByUser = userId === message.createdById;
 
   return (
