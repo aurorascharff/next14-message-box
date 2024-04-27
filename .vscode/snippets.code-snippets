@@ -1,0 +1,22 @@
+{
+	"messageState": {
+		"scope": "typescript",
+		"prefix": "messageState",
+		"body": [
+			"type State = {",
+			"\tsuccess: boolean;",
+			"\terror?: string;",
+			"\ttimestamp?: Date;",
+			"}",
+			"$0"
+		],
+		"description": "Define a TypeScript initial state type"
+	},
+	"noscriptError": {
+		"scope": "typescriptreact",
+		"prefix": "noscriptError",
+		"body": [
+			"<noscript className=\"justify-self-end px-6 pb-3 text-red-600\">{${1:state.error}}</noscript>"
+		],
+	}
+}
