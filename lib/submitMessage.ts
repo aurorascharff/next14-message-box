@@ -2,6 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 import { prisma } from '@/db';
+import { slow } from '@/utils/slow';
 
 type State = {
   error?: string;
@@ -10,9 +11,7 @@ type State = {
 };
 
 export async function submitMessage(_prevState: State, formData: FormData): Promise<State> {
-  await new Promise(resolve => {
-    return setTimeout(resolve, 1000);
-  });
+  await slow();
 
   const timestamp = new Date();
   const messages = await prisma.message.findMany();
