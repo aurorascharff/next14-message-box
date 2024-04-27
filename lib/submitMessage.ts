@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { prisma } from '@/db';
 import { slow } from '@/utils/slow';
+import { messageSchema } from '@/validations/messageSchema';
 
 type State = {
   success: boolean;
@@ -24,12 +25,30 @@ export async function submitMessage(_prevState: State, formData: FormData): Prom
     };
   }
 
-  await prisma.message.create({
-    data: {
-      content: formData.get('message') as string,
-      createdById: formData.get('userId') as string,
-    },
+  const result = messageSchema.safeParse({
+    message: formData.get('message'),
+    userId: formData.get('userId'),
   });
+
+  if (!result.success) {
+    return {
+      error: 'Invalid message',
+      success: false,
+      timestamp,
+    };
+  }
+
+  try {
+    await prisma.message.create({
+      data: result.data,
+    });
+  } catch (error) {
+    return {
+      error: 'Failed to create message',
+      success: false,
+      timestamp,
+    };
+  }
 
   revalidatePath('/');
 
