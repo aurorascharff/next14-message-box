@@ -26,6 +26,7 @@ export default function MessageDisplay({ message, userId }: Props) {
         {message.content}
         {message.isSending && <span className="ml-1 text-gray-400"> Sending ...</span>}
       </span>
+      {message.content}
     </div>
   );
 }
