@@ -10,6 +10,7 @@ type State = {
   success: boolean;
   error?: string;
   timestamp?: Date;
+  content?: string;
 };
 
 export async function submitMessage(_prevState: State, formData: FormData): Promise<State> {
@@ -34,6 +35,7 @@ export async function submitMessage(_prevState: State, formData: FormData): Prom
 
   if (messages.length > 10) {
     return {
+      content: result.data.content,
       error: 'Your message limit has been reached.',
       success: false,
       timestamp,
@@ -46,6 +48,7 @@ export async function submitMessage(_prevState: State, formData: FormData): Prom
     });
   } catch (error) {
     return {
+      content: result.data.content,
       error: 'Failed to create message!',
       success: false,
       timestamp,
