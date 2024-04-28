@@ -5,8 +5,12 @@ import toast from 'react-hot-toast';
 import { submitMessage } from '@/lib/submitMessage';
 import Button from '../Button';
 
-export default function MessageInput({ userId }: { userId: string }) {
-  const [state, formAction, pending] = useActionState(submitMessage, {
+type Props = {
+  userId: string;
+};
+
+export default function MessageInput({ userId }: Props) {
+  const [state, action, pending] = useActionState(submitMessage, {
     success: false,
   });
 
@@ -18,15 +22,15 @@ export default function MessageInput({ userId }: { userId: string }) {
     } else if (state.error) {
       toast.error(state.error);
     }
-  }, [state.timestamp, state.error, state.success]);
+  }, [state.success, state.error, state.timestamp]);
 
   return (
     <>
-      <form ref={formRef} action={formAction} className="flex flex-col gap-2 border-t border-gray-300 p-6 px-6">
+      <form ref={formRef} action={action} className="flex flex-col gap-2 border-t border-gray-300 p-6 px-6">
         <input required minLength={1} name="content" className="italic outline-none" placeholder="Type a message..." />
         <input type="hidden" name="userId" value={userId} />
         <Button disabled={pending} type="submit">
-          {pending ? 'Sending ...' : 'Send'}
+          {pending ? 'Sending...' : 'Send'}
         </Button>
       </form>
       <noscript className="justify-self-end px-6 pb-3 text-red-600">{state.error}</noscript>
