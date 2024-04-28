@@ -7,16 +7,17 @@
 			"\tsuccess: boolean;",
 			"\terror?: string;",
 			"\ttimestamp?: Date;",
+			"\tcontent?: string;",
 			"}",
 			"$0"
 		],
 		"description": "Define a TypeScript initial state type"
 	},
-	"noscriptError": {
+	"errorMessage": {
 		"scope": "typescriptreact",
-		"prefix": "noscriptError",
+		"prefix": "errorMessage",
 		"body": [
-			"<noscript className=\"justify-self-end px-6 pb-3 text-red-600\">{${1:state.error}}</noscript>"
+			"<p className=\"justify-self-end px-6 pb-3 text-red-600\">{${1:state.error}}</p>"
 		],
 	},
 }
