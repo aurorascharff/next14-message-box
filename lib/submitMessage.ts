@@ -4,11 +4,13 @@ import { revalidatePath } from 'next/cache';
 import { prisma } from '@/db';
 import { slow } from '@/utils/slow';
 import { messageSchema } from '@/validations/messageSchema';
+import { getMessages } from './getMessages';
 
 type State = {
   success: boolean;
   error?: string;
   timestamp?: Date;
+  content?: string;
 };
 
 export async function submitMessage(_prevState: State, formData: FormData): Promise<State> {
@@ -29,14 +31,11 @@ export async function submitMessage(_prevState: State, formData: FormData): Prom
     };
   }
 
-  const messages = await prisma.message.findMany({
-    where: {
-      createdById: result.data.createdById,
-    },
-  });
+  const messages = await getMessages(result.data.createdById);
 
   if (messages.length > 10) {
     return {
+      content: result.data.content,
       error: 'Your message limit has been reached.',
       success: false,
       timestamp,
@@ -49,6 +48,7 @@ export async function submitMessage(_prevState: State, formData: FormData): Prom
     });
   } catch (error) {
     return {
+      content: result.data.content,
       error: 'Failed to create message!',
       success: false,
       timestamp,

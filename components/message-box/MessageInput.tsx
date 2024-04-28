@@ -17,17 +17,23 @@ export default function MessageInput({ userId }: Props) {
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
-    if (state.success) {
-      formRef.current?.reset();
-    } else if (state.error) {
+    formRef.current?.reset();
+    if (state.error) {
       toast.error(state.error);
     }
-  }, [state.success, state.error, state.timestamp]);
+  }, [state.error, state.timestamp]);
 
   return (
     <>
       <form ref={formRef} action={action} className="flex flex-col gap-2 border-t border-gray-300 p-6 px-6">
-        <input required minLength={1} name="content" className="italic outline-none" placeholder="Type a message..." />
+        <input
+          defaultValue={state.content}
+          required
+          minLength={1}
+          name="content"
+          className="italic outline-none"
+          placeholder="Type a message..."
+        />
         <input type="hidden" name="userId" value={userId} />
         <Button disabled={pending} type="submit">
           {pending ? 'Sending...' : 'Send'}
