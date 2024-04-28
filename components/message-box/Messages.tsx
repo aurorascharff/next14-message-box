@@ -23,7 +23,6 @@ export default function Messages({ messages, userId }: Props) {
         ...currMessages,
         {
           ...newMessage,
-          id: 'optimistic',
           isSending: true,
         },
       ];

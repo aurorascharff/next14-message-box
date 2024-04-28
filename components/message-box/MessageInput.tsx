@@ -2,6 +2,7 @@
 
 import React, { useActionState, useEffect, useRef, useTransition } from 'react';
 import toast from 'react-hot-toast';
+import { v4 as uuidv4 } from 'uuid';
 import { submitMessage } from '@/lib/submitMessage';
 import Button from '../Button';
 import type { OptimisticMessage } from './Messages';
@@ -36,7 +37,7 @@ export default function MessageInput({ addOptimisticMessage, userId }: Props) {
               content: e.currentTarget.content.value,
               createdAt: new Date(),
               createdById: userId,
-              id: 'optimistic',
+              id: uuidv4(),
             });
             action(new FormData(e.currentTarget));
             formRef.current?.reset();
@@ -47,7 +48,6 @@ export default function MessageInput({ addOptimisticMessage, userId }: Props) {
       >
         <input
           autoComplete="off"
-          defaultValue={state.error && state.content}
           required
           minLength={1}
           name="content"
