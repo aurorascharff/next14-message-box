@@ -18,5 +18,5 @@
 		"body": [
 			"<noscript className=\"justify-self-end px-6 pb-3 text-red-600\">{${1:state.error}}</noscript>"
 		],
-	}
+	},
 }

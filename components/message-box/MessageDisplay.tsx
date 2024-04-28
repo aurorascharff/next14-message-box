@@ -7,7 +7,7 @@ type Props = {
   userId: string;
 };
 
-export default async function MessageDisplay({ message, userId }: Props) {
+export default function MessageDisplay({ message, userId }: Props) {
   const isWrittenByUser = userId === message.createdById;
 
   return (
@@ -22,7 +22,7 @@ export default async function MessageDisplay({ message, userId }: Props) {
         {' - '}
         <span className="text-nowrap text-sm italic">{message.createdAt.toLocaleString()}</span>
       </span>
-      <span className="text-wrap break-all">{message.content}</span>
+      {message.content}
     </div>
   );
 }
