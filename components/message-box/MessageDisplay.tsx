@@ -20,7 +20,15 @@ export default function MessageDisplay({ message, userId }: Props) {
       <span className="text-slate-700">
         <span className="font-bold">{isWrittenByUser ? 'You' : 'Them'}</span>
         {' - '}
-        <span className="text-nowrap text-sm italic">{message.createdAt.toLocaleString()}</span>
+        <span className="text-nowrap text-sm italic">
+          {message.createdAt.toLocaleString('en-US', {
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            month: 'numeric',
+            year: 'numeric',
+          })}
+        </span>
       </span>
       {message.content}
     </div>
