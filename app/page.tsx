@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <Toaster position="top-right" />
-      <div className="grid h-svh place-items-center px-10 md:px-64 xl:px-[500px]">
+      <div className="grid h-svh place-items-center px-10">
         <MessageBox />
       </div>
     </>
