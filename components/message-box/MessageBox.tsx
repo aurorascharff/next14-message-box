@@ -18,7 +18,7 @@ export default async function MessageBox() {
             return <MessageDisplay userId={user.id} key={message.id} message={message} />;
           })}
         </div>
-        <MessageInput />
+        <MessageInput userId={user.id} />
       </div>
     </div>
   );
