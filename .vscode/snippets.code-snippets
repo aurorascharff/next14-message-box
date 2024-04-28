@@ -17,7 +17,7 @@
 		"scope": "typescriptreact",
 		"prefix": "errorMessage",
 		"body": [
-			"<p className=\"justify-self-end px-6 pb-3 text-red-600\">{${1:state.error}}</p>"
+			"<p className=\"px-6 pb-3 text-end text-red-600\">{${1:state.error}}</p>"
 		],
 	},
 }

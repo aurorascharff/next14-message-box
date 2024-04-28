@@ -40,7 +40,7 @@ export default function MessageInput({ userId }: Props) {
           {pending ? 'Sending...' : 'Send'}
         </Button>
       </form>
-      <noscript className="justify-self-end px-6 pb-3 text-red-600">{state.error}</noscript>
+      <noscript className="px-6 pb-3 text-end text-red-600">{state.error}</noscript>
     </>
   );
 }
