@@ -1,6 +1,8 @@
-# Next 13 Message Box
+# Next 14 Message Box
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+It displays a messaging box using Next 14 with Server Actions, Tailwind CSS, and Prisma, and is progressively enhanced with React 19 features.
 
 ## Getting Started
 
