@@ -27,6 +27,7 @@ export default function MessageInput({ userId }: Props) {
     <>
       <form ref={formRef} action={action} className="flex flex-col gap-2 border-t border-gray-300 p-6 px-6">
         <input
+          autoComplete="off"
           defaultValue={state.content}
           required
           minLength={1}
