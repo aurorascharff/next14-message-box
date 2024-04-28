@@ -3,6 +3,7 @@
 import React, { useActionState, useEffect, useRef } from 'react';
 import toast from 'react-hot-toast';
 import { submitMessage } from '@/lib/submitMessage';
+import Button from '../Button';
 
 export default function MessageInput({ userId }: { userId: string }) {
   const [state, formAction, pending] = useActionState(submitMessage, {
@@ -24,13 +25,9 @@ export default function MessageInput({ userId }: { userId: string }) {
       <form ref={formRef} action={formAction} className="flex flex-col gap-2 border-t border-gray-300 p-6 px-6">
         <input required minLength={1} name="content" className="italic outline-none" placeholder="Type a message..." />
         <input type="hidden" name="userId" value={userId} />
-        <button
-          disabled={pending}
-          className="w-fit self-end text-nowrap rounded bg-slate-500 px-3 py-1 text-white disabled:bg-gray-300"
-          type="submit"
-        >
+        <Button disabled={pending} type="submit">
           {pending ? 'Sending ...' : 'Send'}
-        </button>
+        </Button>
       </form>
       <noscript className="justify-self-end px-6 pb-3 text-red-600">{state.error}</noscript>
     </>
