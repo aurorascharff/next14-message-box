@@ -23,7 +23,7 @@ export default function MessageInput({ addOptimisticMessage, userId }: Props) {
     if (state.error) {
       toast.error(state.error);
     }
-  }, [state.success, state.error, state.timestamp]);
+  }, [state.error, state.timestamp]);
 
   return (
     <>
