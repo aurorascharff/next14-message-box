@@ -1,5 +1,5 @@
 import React from 'react';
-import { getUser } from '@/lib/getCurrentUser';
+import { getCurrentUser } from '@/lib/getCurrentUser';
 import { getMessages } from '@/lib/getMessages';
 import DomNodeListener from '../DomNodeListener';
 import MessageDisplay from './MessageDisplay';
@@ -7,7 +7,7 @@ import MessageInput from './MessageInput';
 
 export default async function MessageBox() {
   const messages = await getMessages();
-  const user = await getUser();
+  const user = await getCurrentUser();
 
   return (
     <div className="flex w-full flex-col shadow-xl">
