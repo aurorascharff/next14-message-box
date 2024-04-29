@@ -4,7 +4,7 @@
 
 - Thanks for the introduction
 - Aurora, web dev, norway, consultant at Inmeta in oslo, not meta
-- Excited to be here to tell you about enhancing your forms with rsc
+- Excited to be here to be speaking here today to you about enhancing your forms with rsc
 - Going to code a simplified version of something i’ve built for my customer project, where im actively using RSC, and it's working well for us.
 
 ## Setup and starting point
@@ -38,6 +38,8 @@ Notes: Contains a children prop. Can pass anything here, for example server comp
 
 - Validate data with zod
 - Remove required on input, console.log error
+- Show the error triggering
+- Add back required on input
 
 Notes: Don't trust the input from the client.
 
@@ -47,7 +49,6 @@ Notes: Don't trust the input from the client.
 
 - Return instead of console.log error and timestamp (create timestamp)
 - Add max limit messages sent 5.
-- Add back required on input
 - Get this to the user: useActionState, add initial state and add p "errorMessage", "use client"
 - Show the error in the form.
 - Pass _prevState and return Promise< State>
@@ -100,7 +101,7 @@ Notes: Realistic with a real db. Show feedback.
 - Stash current code
 - Switch branch
 - Show code for messagebox and messages
-- Send multiple messages until it fails
+- Send multiple messages slowly, then many until it fails
 
 Notes: Can even enhance this further with optimistic updates. This still works without js.
 
