@@ -1,11 +1,10 @@
 'use client';
 
 import React, { useOptimistic } from 'react';
-import DomNodeListener from '../DomNodeListener';
+import AutomaticScroller from '../AutomaticScroller';
 import MessageDisplay from './MessageDisplay';
 import MessageInput from './MessageInput';
 import type { Message } from '@prisma/client';
-import AutomaticScroller from '../AutomaticScroller';
 
 export type OptimisticMessage = Message & {
   isSending?: boolean;
