@@ -99,10 +99,11 @@ Notes: Realistic with a real db. Show feedback.
 
 - Stash current code
 - Switch branch
+- Show code for messagebox and messages
 - Send multiple messages until it fails
 
 Notes: Can even enhance this further with optimistic updates. This still works without js.
 
 ## Conclusion
 
-That's my talk, the code is pinned on my GitHub and the optimistic update is on a branch, thank you!
+That's it for this demo, the code is pinned on my GitHub and the optimistic update is on a branch, thank you React Conf!
