@@ -101,7 +101,7 @@ Notes: Realistic with a real db. Show feedback.
 - Stash current code
 - Switch branch
 - Show code for messagebox and messages
-- Send multiple messages until it fails
+- Send multiple messages slowly, then many until it fails
 
 Notes: Can even enhance this further with optimistic updates. This still works without js.
 
