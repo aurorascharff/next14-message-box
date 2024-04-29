@@ -2,9 +2,10 @@
 
 ## Introduction
 
-- Thanks for the introduction, not Meta, web dev, norway, consultant
+- Thanks for the introduction
+- Aurora, web dev, norway, consultant at Inmeta in oslo, not meta
 - Excited to be here to tell you about enhancing your forms with rsc
-- Going to code a simplified version of something i’ve built for my customer project, which is working well, where im actively using RSC.
+- Going to code a simplified version of something i’ve built for my customer project, where im actively using RSC, and it's working well for us.
 
 ## Setup and starting point
 
@@ -45,20 +46,13 @@ Notes: Don't trust the input from the client.
 (submitMessage)
 
 - Return instead of console.log error and timestamp (create timestamp)
-- (Optional) Try catch database error
+- Add max limit messages sent 5.
+- Add back required on input
 - Get this to the user: useActionState, add initial state and add p "errorMessage", "use client"
+- Show the error in the form.
 - Pass _prevState and return Promise< State>
 
-Notes: Can be called without js and return state without js.
-
-## Max messages
-
-(submitMessage)
-
-- Add max limit messages sent 5 and show the error in the form.
-- Add back required on input
-
-Could be any requirements for your data.
+Notes: Can be called without js and return state without js. Could be any requirements for your data.
 
 ## Toast message count
 
@@ -86,7 +80,7 @@ Notes: A little bit rude to reset their input. Maybe this could be changed to be
 
 - Add slow() to server action
 - Use third argument to show feedback
-- Increase max messages
+- Increase max messages to 10
 
 Notes: Realistic with a real db. Show feedback.
 
@@ -94,7 +88,7 @@ Notes: Realistic with a real db. Show feedback.
 
 - By the way, this works without js!
 - Add some, we dont get automatic scrolling or button feedback or toasts.
-- Demo again with js.
+- Demo again with js until it fails.
 
 ## Explanation
 
