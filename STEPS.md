@@ -107,4 +107,4 @@ Notes: Can even enhance this further with optimistic updates. This still works w
 
 ## Conclusion
 
-That's it for this demo, the code is pinned on my GitHub and the optimistic update is on a branch, thank you React Conf!
+That's it for this demo, the code is pinned on my GitHub and the optimistic update is on a branch, and follow me on Twitter for more rsc content. Thanks for listening and thanks React Conf!
