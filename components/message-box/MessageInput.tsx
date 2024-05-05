@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useActionState, useEffect, useRef, useTransition } from 'react';
+import React, { useActionState, useEffect, useRef, useState, useTransition } from 'react';
 import toast from 'react-hot-toast';
 import { v4 as uuidv4 } from 'uuid';
 import { submitMessage } from '@/lib/actions/submitMessage';
@@ -17,38 +17,46 @@ export default function MessageInput({ addOptimisticMessage, userId }: Props) {
     success: false,
   });
 
+  const [defaultValue, setDefaultValue] = useState(state.content);
   const formRef = useRef<HTMLFormElement>(null);
   const [, startTransition] = useTransition();
 
   useEffect(() => {
     if (state.error) {
       toast.error(state.error);
+      if (state.content) {
+        setDefaultValue(state.content);
+      }
     }
-  }, [state.error, state.timestamp]);
+  }, [state.content, state.error, state.timestamp]);
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setDefaultValue('');
+    startTransition(async () => {
+      addOptimisticMessage({
+        content: e.currentTarget.content.value,
+        createdAt: new Date(),
+        createdById: userId,
+        id: uuidv4(),
+      });
+      action(new FormData(e.currentTarget));
+      formRef.current?.reset();
+    });
+  };
 
   return (
     <>
       <form
         ref={formRef}
-        onSubmit={e => {
-          e.preventDefault();
-          startTransition(async () => {
-            addOptimisticMessage({
-              content: e.currentTarget.content.value,
-              createdAt: new Date(),
-              createdById: userId,
-              id: uuidv4(),
-            });
-            action(new FormData(e.currentTarget));
-            formRef.current?.reset();
-          });
-        }}
+        onSubmit={onSubmit}
         action={action}
         className="flex flex-col gap-2 border-t border-gray-300 p-6 px-6"
       >
         <input
           autoComplete="off"
           required
+          defaultValue={defaultValue}
           minLength={1}
           name="content"
           className="italic outline-none"
