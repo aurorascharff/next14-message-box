@@ -30,6 +30,7 @@ export default function MessageInput({ userId }: Props) {
           autoComplete="off"
           defaultValue={state.content}
           required
+          disabled={pending}
           minLength={1}
           name="content"
           className="italic outline-none"

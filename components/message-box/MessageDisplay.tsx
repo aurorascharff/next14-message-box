@@ -14,7 +14,7 @@ export default function MessageDisplay({ message, userId }: Props) {
     <div
       className={cn(
         'flex h-fit w-4/5 flex-col gap-2 rounded p-4 sm:w-2/3',
-        isWrittenByUser ? 'justify-self-end bg-slate-100' : 'border-gray-40 justify-self-start border',
+        isWrittenByUser ? 'justify-self-end bg-slate-200' : 'justify-self-start border border-gray-300',
       )}
     >
       <span className="text-slate-700">
