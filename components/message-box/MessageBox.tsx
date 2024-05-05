@@ -1,6 +1,6 @@
 import React from 'react';
-import { getCurrentUser } from '@/lib/getCurrentUser';
-import { getMessages } from '@/lib/getMessages';
+import { getCurrentUser } from '@/lib/services/getCurrentUser';
+import { getMessages } from '@/lib/services/getMessages';
 import Messages from './Messages';
 
 export default async function MessageBox() {
