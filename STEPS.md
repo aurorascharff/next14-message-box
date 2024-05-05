@@ -11,7 +11,7 @@
 
 - App router, prisma and local DB, tailwind CSS
 - This is now only server components. Show each component.
-- Lets enhance this message box with react 19! Goal: make it interactive while minimizing js on the client and reducing forntend complexity.
+- Lets enhance this message box with react rsc and 19! Goal: make it interactive while minimizing js on the client and reducing forntend complexity.
 
 ## Basic form with server action
 
@@ -49,6 +49,7 @@ Notes: Don't trust the input from the client.
 
 - Return instead of console.log error and timestamp (create timestamp)
 - Add max limit messages sent 5.
+- Return success
 - Get this to the user: useActionState, add initial state and add p "errorMessage", "use client"
 - Show the error in the form.
 - Pass _prevState and return Promise< State>
@@ -107,4 +108,4 @@ Notes: Can even enhance this further with optimistic updates. This still works w
 
 ## Conclusion
 
-That's it for this demo, the code is pinned on my GitHub and the optimistic update is on a branch, thank you React Conf!
+That's it for this demo, the code is pinned on my GitHub and the optimistic update is on a branch, and follow me on Twitter for more rsc content. Thanks for listening and thanks React Conf!
