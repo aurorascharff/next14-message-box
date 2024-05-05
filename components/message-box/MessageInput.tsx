@@ -14,6 +14,7 @@ export default function MessageInput({ userId }: Props) {
         <input
           autoComplete="off"
           required
+          disabled={pending}
           minLength={1}
           name="content"
           className="italic outline-none"
