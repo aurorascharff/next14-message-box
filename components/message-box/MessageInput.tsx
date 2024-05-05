@@ -2,7 +2,7 @@
 
 import React, { useActionState, useEffect, useRef } from 'react';
 import toast from 'react-hot-toast';
-import { submitMessage } from '@/lib/submitMessage';
+import { submitMessage } from '@/lib/actions/submitMessage';
 import Button from '../Button';
 
 type Props = {

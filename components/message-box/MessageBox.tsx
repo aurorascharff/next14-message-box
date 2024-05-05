@@ -1,6 +1,6 @@
 import React from 'react';
-import { getCurrentUser } from '@/lib/getCurrentUser';
-import { getMessages } from '@/lib/getMessages';
+import { getCurrentUser } from '@/lib/services/getCurrentUser';
+import { getMessages } from '@/lib/services/getMessages';
 import AutomaticScroller from '../AutomaticScroller';
 import MessageDisplay from './MessageDisplay';
 import MessageInput from './MessageInput';

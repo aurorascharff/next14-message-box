@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache';
 import { prisma } from '@/db';
 import { slow } from '@/utils/slow';
 import { messageSchema } from '@/validations/messageSchema';
-import { getMessages } from './getMessages';
+import { getMessages } from '../services/getMessages';
 
 type State = {
   success: boolean;
