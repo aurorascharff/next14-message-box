@@ -11,7 +11,7 @@
 
 - App router, prisma and local DB, tailwind CSS
 - This is now only server components. Show each component.
-- Lets enhance this message box with react rsc and 19! Goal: make it interactive while minimizing js on the client and reducing forntend complexity.
+- Lets enhance this message box with react rsc and react 19! Goal: make it interactive while minimizing js on the client and reducing forntend complexity.
 
 ## Basic form with server action
 
@@ -22,7 +22,7 @@
 - Submit to db, add hidden userId field
 - RevalidatePath purge cache
 
-Notes: Lets start with the basic funcitonality. Make the form work and submit after reload with form action and hidden userId. Then revalidatePath. “Just by doing that…”
+Notes: Lets start with the basic funcitonality. Make the form work and submit after reload with form action and hidden userId. Using native forms rather than buttons with onClicks, “had we used the onSubmit we would need the JS to have hydrated this page to be able to submit the form”. Then revalidatePath. “Just by doing that…”.
 
 ## Add scroll handler
 
@@ -54,7 +54,7 @@ Notes: Don't trust the input from the client.
 - Show the error in the form.
 - Pass _prevState and return Promise< State>
 
-Notes: Can be called without js and return state without js. Could be any requirements for your data.
+Notes: Can be called without js and return state without js. Could be any requirements for your data.  We don't need to make an api endpoint and set error states etc like we used to in the next.js app router, which was a hassle.
 
 ## Toast message count
 
@@ -64,9 +64,9 @@ Input: useEffect reset and handle errors, depend on timestamp.  Modify to noscri
 
 - useEffect to toast on error, depend on timestamp and error.
 - reset form
-- Change p tag to noscript
+- Change span tag to noscript
 
-Notes: When next.js implements react 19 the reset will happen automatically for uncontrolled inputs like this. Noscript is a fallback.
+Notes: When next.js implements React 19 the reset will happen automatically for uncontrolled inputs like this. Probably used to using a library that would control forms, like react-hook-form. Not needed. Noscript is a fallback.
 
 ## Return content for rollback on reset
 
@@ -94,19 +94,21 @@ Notes: Realistic with a real db. Show feedback.
 
 ## Explanation
 
-- We’ve been progressively enhancing this, meaning ensuring the basic functionality works at the lowest level of resources, no javascript, then adding things on top to enhance the user experience for users with those resources available.
+- What we've been doing is progressively enhancing this, meaning ensuring the basic functionality works at the lowest level of resources, no javascript, then adding things on top to enhance the user experience for users with those resources available.
 - Lets say your user is on a slow device or slow connection and still waiting for js to finish downloading, parsing, or executing. This will work before its loaded, and will make the hydration for the JS that we do want load faster, because we reduced the amount of js on the client by utilizing server component and weaving server and client. Now depening on the user’s situation, they will get the better experience, and always have a form that works.
+- Of course, depending on your app you can decide how to implement forms and whether you still want your react-hook form and whatnot, but by using the the more primitive features of the web together with React 19 and React Server Components, we can make our forms very robust and while maintaining a great user experience.
 
 ## Optimistic update
 
 - Stash current code
 - Switch branch
-- Show code for messagebox and messages, messageInput
+- Show code for messagebox and messages
+- Show messageInput
 - Send multiple messages slowly, then many until it fails
 - Demo no JS, then with JS again
 
-Notes: Can even enhance this further with optimistic updates. This still works without js.
+Notes: Can even enhance this further with optimistic updates. This still works without js. Adding an onSubmit for client-side js only functionality, use a state with defaultvalue maintain the progressive enhancement.
 
 ## Conclusion
 
-That's it for this demo, the code is pinned on my GitHub and the optimistic update is on a branch, and follow me on Twitter for more rsc content. Thanks for listening and thanks React Conf!
+That's it for this demo, the code is pinned on my GitHub and the optimistic update is on a branch, and follow me on Twitter if you are interested in more rsc content. Thanks for listening and thanks React Conf!
