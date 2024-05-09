@@ -13,7 +13,7 @@ type Props = {
 };
 
 export default function MessageInput({ addOptimisticMessage, userId }: Props) {
-  const [state, action] = useActionState(submitMessage, {
+  const [state, handleSubmitMessage] = useActionState(submitMessage, {
     success: false,
   });
 
@@ -40,7 +40,7 @@ export default function MessageInput({ addOptimisticMessage, userId }: Props) {
         createdById: userId,
         id: uuidv4(),
       });
-      action(new FormData(e.currentTarget));
+      await handleSubmitMessage(new FormData(e.currentTarget));
       formRef.current?.reset();
     });
   };
@@ -50,7 +50,7 @@ export default function MessageInput({ addOptimisticMessage, userId }: Props) {
       <form
         ref={formRef}
         onSubmit={onSubmit}
-        action={action}
+        action={handleSubmitMessage}
         className="flex flex-col gap-2 border-t border-gray-300 p-6 px-6"
       >
         <input
