@@ -10,7 +10,7 @@ type Props = {
 };
 
 export default function MessageInput({ userId }: Props) {
-  const [state, action, pending] = useActionState(submitMessage, {
+  const [state, handleSubmitMessage, pending] = useActionState(submitMessage, {
     success: false,
   });
 
@@ -25,7 +25,11 @@ export default function MessageInput({ userId }: Props) {
 
   return (
     <>
-      <form ref={formRef} action={action} className="flex flex-col gap-2 border-t border-gray-300 p-6 px-6">
+      <form
+        ref={formRef}
+        action={handleSubmitMessage}
+        className="flex flex-col gap-2 border-t border-gray-300 p-6 px-6"
+      >
         <input
           autoComplete="off"
           defaultValue={state.content}
