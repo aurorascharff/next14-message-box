@@ -22,7 +22,7 @@
 - Submit to db, add hidden userId field
 - RevalidatePath purge cache
 
-Notes: Lets start with the basic funcitonality. Make the form work and submit after reload with form action and hidden userId. Using native forms rather than buttons with onClicks, “had we used the onSubmit we would need the JS to have hydrated this page to be able to submit the form”. Then revalidatePath. “Just by doing that…”.
+Notes: Lets start with the basic funcitonality. Make the form work and submit after reload with form action and hidden userId. Using native forms rather than buttons with onClicks, “had we used the onSubmit we would need the JS to have hydrated this page to be able to submit the form”. Then revalidatePath. “Just by doing that…”. Reference Sams talk "old way".
 
 ## Add scroll handler
 
