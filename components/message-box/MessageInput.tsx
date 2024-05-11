@@ -10,7 +10,7 @@ type Props = {
 };
 
 export default function MessageInput({ userId }: Props) {
-  const [state, handleSubmitMessage, pending] = useActionState(submitMessage, {
+  const [state, submitMessageAction, isPending] = useActionState(submitMessage, {
     success: false,
   });
 
@@ -25,24 +25,20 @@ export default function MessageInput({ userId }: Props) {
 
   return (
     <>
-      <form
-        ref={formRef}
-        action={handleSubmitMessage}
-        className="flex flex-col gap-2 border-t border-gray-300 p-6 px-6"
-      >
+      <form ref={formRef} action={submitMessageAction} className="flex flex-col gap-2 p-6">
         <input
           autoComplete="off"
           defaultValue={state.content}
           required
-          disabled={pending}
           minLength={1}
+          disabled={isPending}
           name="content"
           className="italic outline-none"
           placeholder="Type a message..."
         />
         <input type="hidden" name="userId" value={userId} />
-        <Button disabled={pending} type="submit">
-          {pending ? 'Sending...' : 'Send'}
+        <Button disabled={isPending} type="submit">
+          {isPending ? 'Sending...' : 'Send'}
         </Button>
       </form>
       <noscript className="px-6 pb-6 text-end text-red-600">{state.error}</noscript>
