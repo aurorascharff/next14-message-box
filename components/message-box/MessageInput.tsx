@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useActionState, useEffect, useRef } from 'react';
+import React, { useActionState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { submitMessage } from '@/lib/actions/submitMessage';
 import Button from '../Button';
@@ -14,10 +14,7 @@ export default function MessageInput({ userId }: Props) {
     success: false,
   });
 
-  const formRef = useRef<HTMLFormElement>(null);
-
   useEffect(() => {
-    formRef.current?.reset();
     if (state.error) {
       toast.error(state.error);
     }
@@ -25,7 +22,7 @@ export default function MessageInput({ userId }: Props) {
 
   return (
     <>
-      <form ref={formRef} action={submitMessageAction} className="flex flex-col gap-2 p-6">
+      <form action={submitMessageAction} className="flex flex-col gap-2 p-6">
         <input
           autoComplete="off"
           defaultValue={state.content}
