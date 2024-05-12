@@ -86,13 +86,13 @@ React 19 the automatically resets uncontrolled inputs automatically after the ac
 
 - Add slow() to server action
 - Use third argument to show feedback
-- Increase max messages to 10
 
 Notes: Realistic with a real db. Show feedback. We don't need to make an api endpoint and set error states etc like we used to in the next.js app router, which was a hassle. Reference Sams talk "old way".
 
 ## DEMO
 
 - By the way, this works without js!
+- Increase max messages to 10
 - Add some, we dont get automatic scrolling or button feedback or toasts, because all that requires js on the client.
 - Demo again with js until it fails.
 - Turn js back on and show the feedback.
