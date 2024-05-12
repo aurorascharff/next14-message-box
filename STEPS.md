@@ -24,7 +24,7 @@
 - Submit to db, add hidden userId field
 - RevalidatePath purge cache
 
-Notes: Lets start with the basic funcitonality. Make the form work and submit after reload with form action and hidden userId. Using native forms rather than buttons with onClicks, “had we used the onSubmit we would need the JS to have hydrated this page to be able to submit the form”. When called with server action, behaves differently than native form, server action will have a post endpoint generated and be called without js. Then revalidatePath. “Just by doing that…”.
+Notes: Lets start with the basic funcitonality. Make the form work and submit after reload with form action and hidden userId. When called with server action, behaves differently than native form, server action will have a post endpoint generated and be called without js. Then revalidatePath. “Just by doing that…”. Using native forms rather than buttons with onClicks, “had we used the onSubmit we would need the JS to have hydrated this page to be able to submit the form”.
 
 ## Add scroll handler
 
@@ -53,11 +53,11 @@ Notes: Don't trust the input from the client.
 - Return instead of throw error and timestamp (create timestamp)
 - Add max limit messages sent 5.
 - Return success
-- Get this to the user: useActionState, add initial state and add p "errorMessage", "use client"
+- Get this to the user: useActionState, add initial state and add span "errorMessage"
 - Show the error in the form.
 - Pass _prevState and return Promise< State>
 
-Notes: Can be called without js and return state without js. UseActionState returns a wrapped action, when called useActionState will return the last result of the action. Could be any requirements for your data. We don't need to make an api endpoint and set error states etc like we used to in the next.js app router, which was a hassle. Reference Sams talk "old way".
+Notes: Create a component state when a form action is invoked. Can be called without js and return state without js. UseActionState returns a wrapped action, when called useActionState will return the last result of the action. Could be any requirements for your data.
 
 ## Toast message count
 
@@ -68,7 +68,7 @@ Input: useEffect handle errors, depend on timestamp. Modify to noscript handler 
 - useEffect to toast on error, depend on timestamp and error
 - Change span tag to noscript
 
-Notes: When next.js implements React 19 the reset will happen automatically for uncontrolled inputs like this. Probably used to using a library that would control forms, like react-hook-form. Not needed. Noscript is a fallback.
+Notes: Noscript is a fallback.
 
 ## Return content for rollback on reset
 
@@ -77,7 +77,8 @@ Notes: When next.js implements React 19 the reset will happen automatically for 
 - Return result.data.content in the payload.
 - Explain form reset
 
-Notes: Maintain the entered value when there is error. Maybe this could be changed to be valid. Let's return the content and set it as the defaultValue so it's not lost. Uncontrolled inputs reset automatically after an action finishes. Native form stuff that prev hasn't been so relevant to React.
+Notes:
+React 19 the automatically resets uncontrolled inputs automatically after the action finishes. Probably used to using a library that would control forms, like react-hook-form. Not needed. Maintain the entered value when there is error. Maybe this could be changed to be valid. Let's return the content and set it as the defaultValue so it's not lost. Native form stuff that prev hasn't been so relevant to React.
 
 ## Slow server action
 
@@ -85,15 +86,16 @@ Notes: Maintain the entered value when there is error. Maybe this could be chang
 
 - Add slow() to server action
 - Use third argument to show feedback
-- Increase max messages to 10
+- Increase max messages to 8 and demo again
 
-Notes: Realistic with a real db. Show feedback.
+Notes: Realistic with a real db. Show feedback. We don't need to make an api endpoint and set error states etc like we used to in the next.js app router, which was a hassle. Reference Sams talk "old way".
 
 ## DEMO
 
 - By the way, this works without js!
 - Add some, we dont get automatic scrolling or button feedback or toasts, because all that requires js on the client.
-- Demo again with js until it fails.
+- Demo without js until it fails.
+- Turn js back on and show the feedback.
 
 ## Explanation
 
@@ -106,9 +108,8 @@ Notes: Realistic with a real db. Show feedback.
 - Stash current code
 - Switch branch
 - Show code for messagebox and messages
-- Show messageInput and explain how it works
+- Show messageInput and explain how it works, action fallback
 - Send multiple messages slowly, then many until it fails
-- Demo no JS, then with JS again
 
 Notes: Can even enhance this further with optimistic updates. This still works without js. Adding an onSubmit for client-side js only functionality, use a state with defaultvalue maintain the progressive enhancement.
 
