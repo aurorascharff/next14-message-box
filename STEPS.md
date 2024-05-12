@@ -11,6 +11,7 @@
 
 - App router, prisma and local DB, tailwind CSS
 - This is now only server components. Show each component.
+- "so i'll be using server actions to make it easy to call functions on the server, but what I'm doing here can be done with client apps with a little more work to create endpoints"
 - Lets enhance this message box with react rsc and react 19! Goal: make it interactive while minimizing js on the client and reducing forntend complexity.
 
 ## Basic form with server action
@@ -18,6 +19,7 @@
 (MessageInput + submitMessage)
 
 - Attach action prop using React's extension of the form component
+- "this could be an action on the client, but since we're using server components, we can pass a server action instead"
 - Code submitMessage server action
 - Submit to db, add hidden userId field
 - RevalidatePath purge cache
@@ -29,6 +31,7 @@ Notes: Lets start with the basic funcitonality. Make the form work and submit af
 (MessageBox)
 
 - Add donut pattern listener snippet and explain.
+- Show the devtools that the server components arent there but the scroller is
 
 Notes: Contains a children prop. Can pass anything here, for example server components. Only the js for the scroll handler is loaded.
 
@@ -36,9 +39,9 @@ Notes: Contains a children prop. Can pass anything here, for example server comp
 
 (submitMessage)
 
-- Validate data with zod
-- Remove required on input, console.log error
-- Show the error triggering
+- Validate data with zod, throw error
+- Remove required on input
+- Add error boundary and show it triggering
 - Add back required on input
 
 Notes: Don't trust the input from the client.
@@ -60,10 +63,9 @@ Notes: Can be called without js and return state without js. Could be any requir
 
 (MessageInput)
 
-Input: useEffect reset and handle errors, depend on timestamp.  Modify to noscript handler fallback.
+Input: useEffect handle errors, depend on timestamp. Modify to noscript handler fallback.
 
-- useEffect to toast on error, depend on timestamp and error.
-- reset form
+- useEffect to toast on error, depend on timestamp and error
 - Change span tag to noscript
 
 Notes: When next.js implements React 19 the reset will happen automatically for uncontrolled inputs like this. Probably used to using a library that would control forms, like react-hook-form. Not needed. Noscript is a fallback.
@@ -73,8 +75,9 @@ Notes: When next.js implements React 19 the reset will happen automatically for 
 (MessageInput)
 
 - Return result.data.content in the payload.
+- Explain form reset
 
-Notes: A little bit rude to reset their input. Maybe this could be changed to be valid. Let's return the content and set it as the defaultValue so it's not lost.
+Notes: Maintain the entered value when there is error. Maybe this could be changed to be valid. Let's return the content and set it as the defaultValue so it's not lost. Uncontrolled inputs reset automatically after an action finishes.
 
 ## Slow server action
 
@@ -89,7 +92,7 @@ Notes: Realistic with a real db. Show feedback.
 ## DEMO
 
 - By the way, this works without js!
-- Add some, we dont get automatic scrolling or button feedback or toasts.
+- Add some, we dont get automatic scrolling or button feedback or toasts, because all that requires js on the client.
 - Demo again with js until it fails.
 
 ## Explanation
@@ -103,7 +106,7 @@ Notes: Realistic with a real db. Show feedback.
 - Stash current code
 - Switch branch
 - Show code for messagebox and messages
-- Show messageInput
+- Show messageInput and explain how it works
 - Send multiple messages slowly, then many until it fails
 - Demo no JS, then with JS again
 

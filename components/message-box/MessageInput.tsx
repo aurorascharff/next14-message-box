@@ -13,7 +13,7 @@ type Props = {
 };
 
 export default function MessageInput({ addOptimisticMessage, userId }: Props) {
-  const [state, handleSubmitMessage] = useActionState(submitMessage, {
+  const [state, submitMessageAction] = useActionState(submitMessage, {
     success: false,
   });
 
@@ -40,19 +40,14 @@ export default function MessageInput({ addOptimisticMessage, userId }: Props) {
         createdById: userId,
         id: uuidv4(),
       });
-      await handleSubmitMessage(new FormData(e.currentTarget));
+      await submitMessageAction(new FormData(e.currentTarget));
       formRef.current?.reset();
     });
   };
 
   return (
     <>
-      <form
-        ref={formRef}
-        onSubmit={onSubmit}
-        action={handleSubmitMessage}
-        className="flex flex-col gap-2 border-t border-gray-300 p-6 px-6"
-      >
+      <form ref={formRef} onSubmit={onSubmit} action={submitMessageAction} className="flex flex-col gap-2 p-6 px-6">
         <input
           autoComplete="off"
           required
