@@ -10,7 +10,7 @@ export default function MessageInput({ userId }: Props) {
 
   return (
     <>
-      <form className="flex flex-col gap-2 p-6 px-6">
+      <form className="flex flex-col gap-2 p-6">
         <input
           autoComplete="off"
           required
