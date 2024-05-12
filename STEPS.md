@@ -108,9 +108,8 @@ Notes: Realistic with a real db. Show feedback. We don't need to make an api end
 - Stash current code
 - Switch branch
 - Show code for messagebox and messages
-- Show messageInput and explain how it works
+- Show messageInput and explain how it works, action fallback
 - Send multiple messages slowly, then many until it fails
-- Demo no JS, then with JS again
 
 Notes: Can even enhance this further with optimistic updates. This still works without js. Adding an onSubmit for client-side js only functionality, use a state with defaultvalue maintain the progressive enhancement.
 
