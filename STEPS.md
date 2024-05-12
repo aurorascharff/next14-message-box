@@ -11,7 +11,7 @@
 
 - App router, prisma and local DB, tailwind CSS
 - This is now only server components. Show each component.
-- "so i'll be using server actions to make it easy to call functions on the server, but what I'm doing here can be done with client apps with a little more work to create endpoints"
+- "but what I'm doing here can be done with client apps with a little more work to create endpoints"
 - Lets enhance this message box with react rsc and react 19! Goal: make it interactive while minimizing js on the client and reducing forntend complexity.
 
 ## Basic form with server action
@@ -24,7 +24,7 @@
 - Submit to db, add hidden userId field
 - RevalidatePath purge cache
 
-Notes: Lets start with the basic funcitonality. Make the form work and submit after reload with form action and hidden userId. Using native forms rather than buttons with onClicks, “had we used the onSubmit we would need the JS to have hydrated this page to be able to submit the form”. Then revalidatePath. “Just by doing that…”. Reference Sams talk "old way".
+Notes: Lets start with the basic funcitonality. Make the form work and submit after reload with form action and hidden userId. Using native forms rather than buttons with onClicks, “had we used the onSubmit we would need the JS to have hydrated this page to be able to submit the form”. When called with server action, behaves differently than native form, server action will have a post endpoint generated and be called without js. Then revalidatePath. “Just by doing that…”.
 
 ## Add scroll handler
 
@@ -50,14 +50,14 @@ Notes: Don't trust the input from the client.
 
 (submitMessage)
 
-- Return instead of console.log error and timestamp (create timestamp)
+- Return instead of throw error and timestamp (create timestamp)
 - Add max limit messages sent 5.
 - Return success
 - Get this to the user: useActionState, add initial state and add p "errorMessage", "use client"
 - Show the error in the form.
 - Pass _prevState and return Promise< State>
 
-Notes: Can be called without js and return state without js. Could be any requirements for your data.  We don't need to make an api endpoint and set error states etc like we used to in the next.js app router, which was a hassle.
+Notes: Can be called without js and return state without js. UseActionState returns a wrapped action, when called useActionState will return the last result of the action. Could be any requirements for your data. We don't need to make an api endpoint and set error states etc like we used to in the next.js app router, which was a hassle. Reference Sams talk "old way".
 
 ## Toast message count
 
@@ -77,7 +77,7 @@ Notes: When next.js implements React 19 the reset will happen automatically for 
 - Return result.data.content in the payload.
 - Explain form reset
 
-Notes: Maintain the entered value when there is error. Maybe this could be changed to be valid. Let's return the content and set it as the defaultValue so it's not lost. Uncontrolled inputs reset automatically after an action finishes.
+Notes: Maintain the entered value when there is error. Maybe this could be changed to be valid. Let's return the content and set it as the defaultValue so it's not lost. Uncontrolled inputs reset automatically after an action finishes. Native form stuff that prev hasn't been so relevant to React.
 
 ## Slow server action
 
@@ -99,7 +99,7 @@ Notes: Realistic with a real db. Show feedback.
 
 - What we've been doing is progressively enhancing this, meaning ensuring the basic functionality works at the lowest level of resources, no javascript, then adding things on top to enhance the user experience for users with those resources available.
 - Lets say your user is on a slow device or slow connection and still waiting for js to finish downloading, parsing, or executing. This will work before its loaded, and will make the hydration for the JS that we do want load faster, because we reduced the amount of js on the client by utilizing server component and weaving server and client. Now depening on the user’s situation, they will get the better experience, and always have a form that works.
-- Of course, depending on your app you can decide how to implement forms and whether you still want your react-hook form and whatnot, but by using the the more primitive features of the web together with React 19 and React Server Components, we can make our forms very robust and while maintaining a great user experience.
+- Of course, depending on your app you can decide how to implement forms and whether you still want your react-hook form and whatnot, but by using the the more primitive features of the web together with React 19 and React Server Components, we can make our forms very robust and while maintaining a great user experience, which hasn't really been possible in React before.
 
 ## Optimistic update
 
