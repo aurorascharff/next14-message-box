@@ -42,18 +42,9 @@ export async function submitMessage(_prevState: State, formData: FormData): Prom
     };
   }
 
-  try {
-    await prisma.message.create({
-      data: result.data,
-    });
-  } catch (error) {
-    return {
-      content: result.data.content,
-      error: 'Failed to create message!',
-      success: false,
-      timestamp,
-    };
-  }
+  await prisma.message.create({
+    data: result.data,
+  });
 
   revalidatePath('/');
 

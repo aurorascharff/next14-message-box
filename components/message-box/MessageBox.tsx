@@ -1,4 +1,5 @@
 import React from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import { getCurrentUser } from '@/lib/services/getCurrentUser';
 import { getMessages } from '@/lib/services/getMessages';
 import AutomaticScroller from '../AutomaticScroller';
@@ -19,7 +20,9 @@ export default async function MessageBox() {
             return <MessageDisplay userId={user.id} key={message.id} message={message} />;
           })}
         </AutomaticScroller>
-        <MessageInput userId={user.id} />
+        <ErrorBoundary fallback={<p className="px-6 py-11 text-end">⚠️Something went wrong</p>}>
+          <MessageInput userId={user.id} />
+        </ErrorBoundary>
       </div>
     </div>
   );
