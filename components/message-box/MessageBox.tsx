@@ -20,7 +20,7 @@ export default async function MessageBox() {
             return <MessageDisplay userId={user.id} key={message.id} message={message} />;
           })}
         </AutomaticScroller>
-        <ErrorBoundary fallback={<p className="px-6 py-11 text-end">⚠️Something went wrong</p>}>
+        <ErrorBoundary fallback={<p className="px-6 pb-8 pt-14 text-end">⚠️Something went wrong</p>}>
           <MessageInput userId={user.id} />
         </ErrorBoundary>
       </div>
