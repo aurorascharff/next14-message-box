@@ -47,7 +47,7 @@ export default function MessageInput({ addOptimisticMessage, userId }: Props) {
 
   return (
     <>
-      <form ref={formRef} onSubmit={onSubmit} action={submitMessageAction} className="flex flex-col gap-2 p-6 px-6">
+      <form ref={formRef} onSubmit={onSubmit} action={submitMessageAction} className="flex flex-col gap-2 p-6">
         <input
           autoComplete="off"
           required
