@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useOptimistic } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import AutomaticScroller from '../AutomaticScroller';
 import MessageDisplay from './MessageDisplay';
 import MessageInput from './MessageInput';
@@ -37,7 +38,9 @@ export default function Messages({ messages, userId }: Props) {
           return <MessageDisplay userId={userId} key={message.id} message={message} />;
         })}
       </AutomaticScroller>
-      <MessageInput addOptimisticMessage={addOptimisticMessage} userId={userId} />
+      <ErrorBoundary fallback={<p className="px-6 py-11 text-end">⚠️Something went wrong</p>}>
+        <MessageInput addOptimisticMessage={addOptimisticMessage} userId={userId} />
+      </ErrorBoundary>
     </div>
   );
 }
