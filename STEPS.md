@@ -53,11 +53,11 @@ Notes: Don't trust the input from the client.
 - Return instead of throw error and timestamp (create timestamp)
 - Add max limit messages sent 5.
 - Return success
-- Get this to the user: useActionState, add initial state and add span "errorMessage", "use client"
+- Get this to the user: useActionState, add initial state and add span "errorMessage"
 - Show the error in the form.
 - Pass _prevState and return Promise< State>
 
-Notes: Can be called without js and return state without js. UseActionState returns a wrapped action, when called useActionState will return the last result of the action. Could be any requirements for your data.
+Notes: Create a component state when a form action is invoked. Can be called without js and return state without js. UseActionState returns a wrapped action, when called useActionState will return the last result of the action. Could be any requirements for your data.
 
 ## Toast message count
 
