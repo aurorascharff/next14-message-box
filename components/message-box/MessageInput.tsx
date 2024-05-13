@@ -24,9 +24,9 @@ export default function MessageInput({ addOptimisticMessage, userId }: Props) {
   useEffect(() => {
     if (state.error) {
       toast.error(state.error);
-      if (state.content) {
-        setDefaultValue(state.content);
-      }
+    }
+    if (state.content) {
+      setDefaultValue(state.content);
     }
   }, [state.content, state.error, state.timestamp]);
 
