@@ -50,6 +50,5 @@ export async function submitMessage(_prevState: State, formData: FormData): Prom
 
   return {
     success: true,
-    timestamp,
   };
 }
