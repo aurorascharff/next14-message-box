@@ -11,7 +11,6 @@
 
 - App router, prisma and local DB, tailwind CSS
 - This is now only server components. Show each component.
-- "but what I'm doing here can be done with client apps with a little more work to create endpoints"
 - Lets enhance this message box with react rsc and react 19! Goal: make it interactive while minimizing js on the client and reducing forntend complexity.
 
 ## Basic form with server action
@@ -78,7 +77,7 @@ Notes: Noscript is a fallback.
 - Explain form reset
 
 Notes:
-React 19 the automatically resets uncontrolled inputs automatically after the action finishes. Probably used to using a library that would control forms, like react-hook-form. Not needed. Maintain the entered value when there is error. Maybe this could be changed to be valid. Let's return the content and set it as the defaultValue so it's not lost. Native form stuff that prev hasn't been so relevant to React.
+React 19 the automatically resets uncontrolled inputs automatically after the action finishes. Probably used to using a library that would control forms, like react-hook-form. Not needed. Maintain the entered value when there is error. Maybe this could be changed to be valid. Let's return the content and set it as the defaultValue so it's not lost.
 
 ## Slow server action
 
