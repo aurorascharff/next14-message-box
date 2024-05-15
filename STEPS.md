@@ -11,7 +11,6 @@
 
 - App router, prisma and local DB, tailwind CSS
 - This is now only server components. Show each component.
-- "but what I'm doing here can be done with client apps with a little more work to create endpoints"
 - Lets enhance this message box with react rsc and react 19! Goal: make it interactive while minimizing js on the client and reducing forntend complexity.
 
 ## Basic form with server action
@@ -101,7 +100,7 @@ Notes: Realistic with a real db. Show feedback. We don't need to make an api end
 
 - What we've been doing is progressively enhancing this, meaning ensuring the basic functionality works at the lowest level of resources, no javascript, then adding things on top to enhance the user experience for users with those resources available. By using action, useActionState, providing fallbacks, and native web.
 - Lets say your user is on a slow device or slow connection and still waiting for js to finish downloading, parsing, or executing. This will work before its loaded, and will make the hydration for the JS that we do want load faster, because we reduced the amount of js on the client by utilizing server component and weaving server and client. Now depening on the user’s situation, they will get the better experience, and always have a form that works.
-- Of course, depending on your app you can decide how to implement forms and whether you still want your react-hook form and whatnot, but by using the the more primitive features of the web together with React 19 and React Server Components, we can make our forms very robust and while maintaining a great user experience, which hasn't really been possible in plain React before.
+- Of course, depending on your app you can decide how to implement forms and whether you still want your react-hook form and whatnot, but by using the the more primitive features of the web together with React 19 and React Server Components, we can make our forms very robust and while maintaining a great user experience.
 
 ## Optimistic update
 
