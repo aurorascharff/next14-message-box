@@ -3,7 +3,7 @@
 ## Introduction
 
 - Thanks for the introduction
-- Aurora, web dev, norway, consultant at Inmeta in oslo, inmeta, im not from meta, clearly because im here on my windows and theyre all using macbooks.
+- Aurora, web dev, norway, consultant at Inmeta in oslo, inmeta, im not from meta
 - Excited to be here to be speaking here today to you about enhancing your forms with rsc
 - Going to code a simplified version of something i’ve built for my customer project, where im actively using RSC, and it's working well for us.
 
