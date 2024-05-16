@@ -24,7 +24,7 @@
 - Submit to db, add hidden userId field
 - RevalidatePath purge cache
 
-Notes: Lets start with the basic funcitonality. Make the form work and submit after reload with form action and hidden userId. When called with server action, behaves differently than native form, server action will have a post endpoint generated and be called without js. Then revalidatePath. “Just by doing that…”. Using native forms rather than buttons with onClicks, “had we used the onSubmit we would need the JS to have hydrated this page to be able to submit the form”.
+Notes: Lets start with the basic funcitonality. Make the form work and submit after reload with form action and hidden userId. When called with server action, behaves differently than native form, server action will have a post endpoint generated and be called without js. Then revalidatePath. “Just by doing that…”. Using native forms rather than buttons with onClicks, “had we used the onSubmit we would need React to have hydrated this page to be able to submit the form”.
 
 ## Add scroll handler
 
@@ -33,7 +33,7 @@ Notes: Lets start with the basic funcitonality. Make the form work and submit af
 - Add donut pattern listener snippet and explain.
 - Show the devtools that the server components arent there but the scroller is
 
-Notes: Contains a children prop. Can pass anything here, for example server components. Only the js for the scroll handler is loaded.
+Notes: Contains a children prop. Could be any prop. Can pass anything here, for example server components. Only the js for the scroll handler is loaded.
 
 ## Validate data
 
@@ -57,7 +57,7 @@ Notes: Don't trust the input from the client.
 - Show the error in the form.
 - Pass _prevState and return Promise< State>
 
-Notes: Could check for any requirements for your data. Create a component state when a form action is invoked. Can be called without js and return state without js. UseActionState returns a wrapped action, when called useActionState will return the last result of the action.
+Notes: Could check for any requirements for your data. Create a component state when a form action is invoked. Can be called without js and return state without js. UseActionState returns a wrapped action, when called useActionState will return the last result of the action. Could use this to return the field errors.
 
 ## Toast message count
 
@@ -101,7 +101,7 @@ Notes: Realistic with a real db. Show feedback. We don't need to make an api end
 
 - What we've been doing is progressively enhancing this, meaning ensuring the basic functionality works at the lowest level of resources, no javascript, then adding things on top to enhance the user experience for users with those resources available. By using action, useActionState, providing fallbacks, and native web.
 - Lets say your user is on a slow device or slow connection and still waiting for js to finish downloading, parsing, or executing. This will work before its loaded, and will make the hydration for the JS that we do want load faster, because we reduced the amount of js on the client by utilizing server component and weaving server and client. Now depening on the user’s situation, they will get the better experience, and always have a form that works.
-- Of course, depending on your app you can decide how to implement forms and whether you still want your react-hook form and whatnot, but by using the the more primitive features of the web together with React 19 and React Server Components, we can make our forms very robust and while maintaining a great user experience, which hasn't really been relevant in React before (unless you were using Remix, in which case good for you).
+- Of course, depending on your app you can decide how to implement forms and whether you still want your react-hook form and whatnot, but by using the the more primitive features of the web together with React 19 and React Server Components, we can make our forms very robust and while maintaining a great user experience, which hasn't really been easy in React before (unless you were using Remix, in which case good for you).
 
 ## Optimistic update
 
