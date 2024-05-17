@@ -4,7 +4,15 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 It displays a messaging box using Next 14 with Server Actions, Tailwind CSS, and Prisma, and is progressively enhanced with React 19 features.
 
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+
 ## Getting Started
+
+First, force install the dependencies to make the React 19 Beta work:
+
+```bash
+npm install --force
+# or
 
 First, run the development server:
 
@@ -18,14 +26,11 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
 ## Prisma Setup
 
-Add a `.env` file to the root of the project, refer to `.env.sample` for the required environment variables.
 You need decide between prisma local development with `sqlite` or a real database with for example `sqlserver`. Define it in the `schema.prisma` file.
+
+Consider adding a `.env` file to the root of the project and using these inside `schema.prisma` with `env("DATABASE_URL")`, refer to `.env.sample`.
 
 After switching, delete the `prisma/migrations` folder before running the migration command.
 
