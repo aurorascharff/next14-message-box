@@ -27,8 +27,8 @@ const USERS: User[] = [
   },
 ];
 
-function seedMessages() {
-  Promise.all(
+async function seedMessages() {
+  await Promise.all(
     USERS.map(n => {
       return prisma.user.create({ data: { id: n.id, name: n.name } });
     }),
@@ -39,7 +39,7 @@ function seedMessages() {
     .catch(e => {
       return console.error('[SEED] Failed to create user records', e);
     });
-  Promise.all(
+  await Promise.all(
     MESSAGES.map(n => {
       return prisma.message.create({ data: { content: n.content, createdById: n.createdById } });
     }),
