@@ -16,8 +16,11 @@ type Props = {
 
 export default function MessageDisplay({ message, userId, addOptimisticMessage }: Props) {
   const isWrittenByUser = userId === message.createdById;
+
   const [, submitMessageAction] = useActionState(
     async (_prevState: MessageState, formData: FormData) => {
+      formData.set('content', message.content);
+      formData.set('userId', userId);
       const result = await submitMessage(formData);
       if (result.error) {
         toast.error(result.error);
@@ -66,8 +69,6 @@ export default function MessageDisplay({ message, userId, addOptimisticMessage }
             <Button className="hover:underline" type="submit">
               Failed. Retry?
             </Button>
-            <input type="hidden" name="content" value={message.content} />
-            <input type="hidden" name="userId" value={userId} />
           </form>
         )}
         {message.isSending && <span className="ml-1 text-gray-400"> Sending ...</span>}
