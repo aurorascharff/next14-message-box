@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useActionState, useEffect, useTransition } from 'react';
+import React, { useActionState } from 'react';
 import toast from 'react-hot-toast';
 
 import { submitMessage } from '@/lib/actions/submitMessage';
 import { cn } from '@/utils/cn';
 import Button from '../Button';
-import type { OptimisticMessage } from './Messages';
+import type { MessageState, OptimisticMessage } from './Messages';
 
 type Props = {
   message: OptimisticMessage;
@@ -16,31 +16,27 @@ type Props = {
 
 export default function MessageDisplay({ message, userId, addOptimisticMessage }: Props) {
   const isWrittenByUser = userId === message.createdById;
-  const [state, submitMessageAction] = useActionState(submitMessage, {
-    success: false,
-  });
-  const [, startTransition] = useTransition();
+  const [, submitMessageAction] = useActionState(
+    async (_prevState: MessageState, formData: FormData) => {
+      const result = await submitMessage(formData);
+      if (result.error) {
+        toast.error(result.error);
+      }
+      return result;
+    },
+    {
+      success: false,
+    },
+  );
 
-  useEffect(() => {
-    if (state.error) {
-      toast.error(state.error);
-    }
-  }, [state.error, state.timestamp]);
-
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    startTransition(async () => {
-      addOptimisticMessage({
-        content: message.content,
-        createdAt: message.createdAt,
-        createdById: userId,
-        id: message.id,
-      });
-      const formData = new FormData();
-      formData.append('content', message.content);
-      formData.append('userId', userId);
-      await submitMessageAction(formData);
+  const action = async (formData: FormData) => {
+    addOptimisticMessage({
+      content: message.content,
+      createdAt: message.createdAt,
+      createdById: userId,
+      id: message.id,
     });
+    await submitMessageAction(formData);
   };
 
   return (
@@ -66,10 +62,12 @@ export default function MessageDisplay({ message, userId, addOptimisticMessage }
       <div className="flex flex-row gap-1">
         {message.content}
         {message.hasFailed && (
-          <form className="ml-1 flex flex-row gap-1 text-red-600" onSubmit={onSubmit} action={submitMessageAction}>
+          <form className="ml-1 flex flex-row gap-1 text-red-600" action={action}>
             <Button className="hover:underline" type="submit">
               Failed. Retry?
             </Button>
+            <input type="hidden" name="content" value={message.content} />
+            <input type="hidden" name="userId" value={userId} />
           </form>
         )}
         {message.isSending && <span className="ml-1 text-gray-400"> Sending ...</span>}

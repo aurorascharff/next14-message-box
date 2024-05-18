@@ -17,6 +17,14 @@ type Props = {
   userId: string;
 };
 
+export type MessageState = {
+  success: boolean;
+  error?: string;
+  timestamp?: Date;
+  content?: string;
+  messageId?: string;
+};
+
 export default function Messages({ messages, userId }: Props) {
   const [optimisticMessages, addOptimisticMessage] = useOptimistic(
     messages,

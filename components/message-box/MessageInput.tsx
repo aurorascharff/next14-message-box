@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useActionState, useEffect, useRef, useState, useTransition } from 'react';
+import React, { useActionState, useRef } from 'react';
 import toast from 'react-hot-toast';
 import { v4 as uuidv4 } from 'uuid';
 import { submitMessage } from '@/lib/actions/submitMessage';
 import Button from '../Button';
-import type { OptimisticMessage } from './Messages';
+import type { MessageState, OptimisticMessage } from './Messages';
 
 type Props = {
   addOptimisticMessage: (_message: OptimisticMessage) => void;
@@ -14,51 +14,48 @@ type Props = {
 };
 
 export default function MessageInput({ addOptimisticMessage, addFailedMessage, userId }: Props) {
-  const [state, submitMessageAction] = useActionState(submitMessage, {
-    success: false,
-  });
-
-  const [defaultValue, setDefaultValue] = useState(state.content);
-  const formRef = useRef<HTMLFormElement>(null);
-  const [, startTransition] = useTransition();
-
-  useEffect(() => {
-    setDefaultValue('');
-    if (state.error) {
-      toast.error(state.error);
-      if (state.content) {
-        addFailedMessage({
-          content: state.content,
-          createdAt: new Date(),
-          createdById: userId,
-          id: uuidv4(),
-        });
+  const [state, submitMessageAction] = useActionState(
+    async (_prevState: MessageState, formData: FormData) => {
+      const result = await submitMessage(formData);
+      if (result.error) {
+        toast.error(result.error);
+        if (result.content) {
+          addFailedMessage({
+            content: result.content,
+            createdAt: new Date(),
+            createdById: userId,
+            id: result.messageId || uuidv4(),
+          });
+        }
       }
-    }
-  }, [addFailedMessage, state.content, state.error, state.timestamp, userId]);
+      return result;
+    },
+    {
+      success: false,
+    },
+  );
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setDefaultValue('');
-    startTransition(async () => {
-      addOptimisticMessage({
-        content: e.currentTarget.content.value,
-        createdAt: new Date(),
-        createdById: userId,
-        id: uuidv4(),
-      });
-      await submitMessageAction(new FormData(e.currentTarget));
-      formRef.current?.reset();
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const action = async (formData: FormData) => {
+    const uuid = uuidv4();
+    addOptimisticMessage({
+      content: formData.get('content') as string,
+      createdAt: new Date(),
+      createdById: userId,
+      id: uuid,
     });
+    formData.set('messageId', uuid);
+    await submitMessageAction(formData);
+    formRef.current?.reset();
   };
 
   return (
     <>
-      <form ref={formRef} onSubmit={onSubmit} action={submitMessageAction} className="flex flex-col gap-2 p-6">
+      <form ref={formRef} action={action} className="flex flex-col gap-2 p-6">
         <input
           autoComplete="off"
           required
-          defaultValue={defaultValue}
           minLength={1}
           name="content"
           className="italic outline-none"

@@ -6,39 +6,30 @@ import { slow } from '@/utils/slow';
 import { messageSchema } from '@/validations/messageSchema';
 import { getMessages } from '../services/getMessages';
 
-type State = {
-  success: boolean;
-  error?: string;
-  timestamp?: Date;
-  content?: string;
-};
-
-export async function submitMessage(_prevState: State, formData: FormData): Promise<State> {
+export async function submitMessage(formData: FormData) {
   await slow();
-
-  const timestamp = new Date();
 
   const result = messageSchema.safeParse({
     content: formData.get('content'),
     createdById: formData.get('userId'),
+    messageId: formData.get('messageId'),
   });
 
   if (!result.success) {
     return {
       error: 'Invalid message!',
       success: false,
-      timestamp,
     };
   }
 
   const messages = await getMessages(result.data.createdById);
 
-  if (messages.length > 15) {
+  if (messages.length > 6) {
     return {
       content: result.data.content,
       error: 'Your message limit has been reached.',
+      messageId: result.data.messageId,
       success: false,
-      timestamp,
     };
   }
 
