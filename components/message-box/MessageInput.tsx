@@ -67,7 +67,7 @@ export default function MessageInput({ addOptimisticMessage, addFailedMessage, u
         <input type="hidden" name="userId" value={userId} />
         <Button type="submit">Send</Button>
       </form>
-      <noscript className="px-6 pb-6 text-end text-red-600">{state.error}</noscript>
+      {state.error && <noscript className="px-6 pb-6 text-end text-red-600">{state.error}</noscript>}
     </>
   );
 }

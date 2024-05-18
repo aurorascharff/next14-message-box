@@ -16,7 +16,7 @@
 		"scope": "typescriptreact",
 		"prefix": "errorMessage",
 		"body": [
-			"<span className=\"px-6 pb-6 text-end text-red-600\">{${1:state.error}}</span>"
+			"{state.error && <span className=\"px-6 pb-6 text-end text-red-600\">{${1:state.error}}</span>}"
 		],
 	},
 	"errorBoundary": {
