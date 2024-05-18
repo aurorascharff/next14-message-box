@@ -9,10 +9,11 @@ import type { OptimisticMessage } from './Messages';
 
 type Props = {
   addOptimisticMessage: (_message: OptimisticMessage) => void;
+  addFailedMessage: (_message: OptimisticMessage) => void;
   userId: string;
 };
 
-export default function MessageInput({ addOptimisticMessage, userId }: Props) {
+export default function MessageInput({ addOptimisticMessage, addFailedMessage, userId }: Props) {
   const [state, submitMessageAction] = useActionState(submitMessage, {
     success: false,
   });
@@ -22,13 +23,19 @@ export default function MessageInput({ addOptimisticMessage, userId }: Props) {
   const [, startTransition] = useTransition();
 
   useEffect(() => {
+    setDefaultValue('');
     if (state.error) {
       toast.error(state.error);
+      if (state.content) {
+        addFailedMessage({
+          content: state.content,
+          createdAt: new Date(),
+          createdById: userId,
+          id: uuidv4(),
+        });
+      }
     }
-    if (state.content) {
-      setDefaultValue(state.content);
-    }
-  }, [state.content, state.error, state.timestamp]);
+  }, [addFailedMessage, state.content, state.error, state.timestamp, userId]);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

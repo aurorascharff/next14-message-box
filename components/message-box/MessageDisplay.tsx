@@ -1,14 +1,47 @@
-import React from 'react';
+'use client';
+
+import React, { useActionState, useEffect, useTransition } from 'react';
+import toast from 'react-hot-toast';
+
+import { submitMessage } from '@/lib/actions/submitMessage';
 import { cn } from '@/utils/cn';
+import Button from '../Button';
 import type { OptimisticMessage } from './Messages';
 
 type Props = {
   message: OptimisticMessage;
   userId: string;
+  addOptimisticMessage: (_message: OptimisticMessage) => void;
 };
 
-export default function MessageDisplay({ message, userId }: Props) {
+export default function MessageDisplay({ message, userId, addOptimisticMessage }: Props) {
   const isWrittenByUser = userId === message.createdById;
+  const [state, submitMessageAction] = useActionState(submitMessage, {
+    success: false,
+  });
+  const [, startTransition] = useTransition();
+
+  useEffect(() => {
+    if (state.error) {
+      toast.error(state.error);
+    }
+  }, [state.error, state.timestamp]);
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    startTransition(async () => {
+      addOptimisticMessage({
+        content: message.content,
+        createdAt: message.createdAt,
+        createdById: userId,
+        id: message.id,
+      });
+      const formData = new FormData();
+      formData.append('content', message.content);
+      formData.append('userId', userId);
+      await submitMessageAction(formData);
+    });
+  };
 
   return (
     <div
@@ -30,10 +63,17 @@ export default function MessageDisplay({ message, userId }: Props) {
           })}
         </span>
       </span>
-      <span>
+      <div className="flex flex-row gap-1">
         {message.content}
+        {message.hasFailed && (
+          <form className="ml-1 flex flex-row gap-1 text-red-600" onSubmit={onSubmit} action={submitMessageAction}>
+            <Button className="hover:underline" type="submit">
+              Failed. Retry?
+            </Button>
+          </form>
+        )}
         {message.isSending && <span className="ml-1 text-gray-400"> Sending ...</span>}
-      </span>
+      </div>
     </div>
   );
 }
