@@ -16,7 +16,16 @@ type Props = {
 export default function MessageInput({ addOptimisticMessage, addFailedMessage, userId }: Props) {
   const [state, submitMessageAction] = useActionState(
     async (_prevState: MessageState, formData: FormData) => {
+      const uuid = uuidv4();
+      addOptimisticMessage({
+        content: formData.get('content') as string,
+        createdAt: new Date(),
+        createdById: userId,
+        id: uuid,
+      });
+      formData.append('messageId', uuid);
       const result = await submitMessage(formData);
+      formRef.current?.reset();
       if (result.error) {
         toast.error(result.error);
         if (result.content) {
@@ -37,22 +46,9 @@ export default function MessageInput({ addOptimisticMessage, addFailedMessage, u
 
   const formRef = useRef<HTMLFormElement>(null);
 
-  const action = async (formData: FormData) => {
-    const uuid = uuidv4();
-    addOptimisticMessage({
-      content: formData.get('content') as string,
-      createdAt: new Date(),
-      createdById: userId,
-      id: uuid,
-    });
-    formData.set('messageId', uuid);
-    await submitMessageAction(formData);
-    formRef.current?.reset();
-  };
-
   return (
     <>
-      <form ref={formRef} action={action} className="flex flex-col gap-2 p-6">
+      <form ref={formRef} action={submitMessageAction} className="flex flex-col gap-2 p-6">
         <input
           autoComplete="off"
           required

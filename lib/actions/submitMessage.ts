@@ -13,7 +13,7 @@ export async function submitMessage(formData: FormData): Promise<MessageState> {
   const result = messageSchema.safeParse({
     content: formData.get('content'),
     createdById: formData.get('userId'),
-    messageId: formData.get('messageId') || undefined,
+    id: formData.get('messageId') || undefined,
   });
 
   if (!result.success) {
@@ -25,11 +25,11 @@ export async function submitMessage(formData: FormData): Promise<MessageState> {
 
   const messages = await getMessages(result.data.createdById);
 
-  if (messages.length > 4) {
+  if (messages.length > 14) {
     return {
       content: result.data.content,
       error: 'Your message limit has been reached.',
-      messageId: result.data.messageId,
+      messageId: result.data.id,
       success: false,
     };
   }

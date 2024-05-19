@@ -2,7 +2,6 @@
 
 import React, { useActionState } from 'react';
 import toast from 'react-hot-toast';
-
 import { submitMessage } from '@/lib/actions/submitMessage';
 import { cn } from '@/utils/cn';
 import Button from '../Button';
@@ -19,8 +18,16 @@ export default function MessageDisplay({ message, userId, addOptimisticMessage }
 
   const [, submitMessageAction] = useActionState(
     async (_prevState: MessageState, formData: FormData) => {
-      formData.set('content', message.content);
-      formData.set('userId', userId);
+      formData.append('messageId', message.id);
+      formData.append('content', message.content);
+      formData.append('userId', userId);
+      formData.append('createdAt', message.createdAt.toISOString());
+      addOptimisticMessage({
+        content: message.content,
+        createdAt: message.createdAt,
+        createdById: userId,
+        id: message.id,
+      });
       const result = await submitMessage(formData);
       if (result.error) {
         toast.error(result.error);
@@ -31,16 +38,6 @@ export default function MessageDisplay({ message, userId, addOptimisticMessage }
       success: false,
     },
   );
-
-  const action = async (formData: FormData) => {
-    addOptimisticMessage({
-      content: message.content,
-      createdAt: message.createdAt,
-      createdById: userId,
-      id: message.id,
-    });
-    await submitMessageAction(formData);
-  };
 
   return (
     <div
@@ -65,7 +62,7 @@ export default function MessageDisplay({ message, userId, addOptimisticMessage }
       <div className="flex flex-row gap-1">
         {message.content}
         {message.hasFailed && (
-          <form className="ml-1 flex flex-row gap-1 text-red-600" action={action}>
+          <form className="ml-1 flex flex-row gap-1 text-red-600" action={submitMessageAction}>
             <Button className="hover:underline" type="submit">
               Failed. Retry?
             </Button>
