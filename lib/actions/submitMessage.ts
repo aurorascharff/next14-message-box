@@ -6,7 +6,7 @@ import { slow } from '@/utils/slow';
 import { messageSchema } from '@/validations/messageSchema';
 import { getMessages } from '../services/getMessages';
 
-export type State = {
+type State = {
   success: boolean;
   error?: string;
   timestamp?: Date;
@@ -34,7 +34,7 @@ export async function submitMessage(_prevState: State, formData: FormData): Prom
 
   const messages = await getMessages(result.data.createdById);
 
-  if (messages.length > 2) {
+  if (messages.length > 15) {
     return {
       content: result.data.content,
       error: 'Your message limit has been reached.',

@@ -59,8 +59,8 @@ export default function MessageInput({ addOptimisticMessage, addFailedMessage, u
         <input
           autoComplete="off"
           required
-          minLength={1}
           defaultValue={defaultValue}
+          minLength={1}
           name="content"
           className="italic outline-none"
           placeholder="Type a message..."
