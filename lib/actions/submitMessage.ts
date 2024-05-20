@@ -1,13 +1,21 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import type { MessageState } from '@/components/message-box/Messages';
 import { prisma } from '@/db';
 import { slow } from '@/utils/slow';
+import type { MessageSchemaType } from '@/validations/messageSchema';
 import { messageSchema } from '@/validations/messageSchema';
 import { getMessages } from '../services/getMessages';
 
-export async function submitMessage(formData: FormData): Promise<MessageState> {
+export type State = {
+  success: boolean;
+  error?: string;
+  timestamp?: Date;
+  data?: MessageSchemaType;
+  messageId?: string;
+};
+
+export async function submitMessage(_prevState: State, formData: FormData): Promise<State> {
   await slow();
 
   const result = messageSchema.safeParse({
@@ -16,21 +24,24 @@ export async function submitMessage(formData: FormData): Promise<MessageState> {
     id: formData.get('messageId') || undefined,
   });
 
+  const timestamp = new Date();
+
   if (!result.success) {
     return {
       error: 'Invalid message!',
       success: false,
+      timestamp,
     };
   }
 
   const messages = await getMessages(result.data.createdById);
 
-  if (messages.length > 14) {
+  if (messages.length > 19) {
     return {
-      content: result.data.content,
+      data: result.data,
       error: 'Your message limit has been reached.',
-      messageId: result.data.id,
       success: false,
+      timestamp,
     };
   }
 

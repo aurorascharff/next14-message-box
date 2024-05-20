@@ -9,3 +9,5 @@ export const messageSchema = z.object({
   }),
   id: z.string().optional(),
 });
+
+export type MessageSchemaType = z.infer<typeof messageSchema>;
