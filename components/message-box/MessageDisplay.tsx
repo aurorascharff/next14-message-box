@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useActionState, useEffect, useTransition } from 'react';
+import React from 'react';
 import toast from 'react-hot-toast';
+
 import { submitMessage } from '@/lib/actions/submitMessage';
 import { cn } from '@/utils/cn';
 import Button from '../Button';
@@ -15,32 +16,26 @@ type Props = {
 
 export default function MessageDisplay({ message, userId, addOptimisticMessage }: Props) {
   const isWrittenByUser = userId === message.createdById;
-  const [, startTransition] = useTransition();
 
-  const [state, submitMessageAction] = useActionState(submitMessage, {
-    success: false,
-  });
-
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    startTransition(async () => {
-      addOptimisticMessage({
-        content: message.content,
-        createdAt: message.createdAt,
-        createdById: userId,
-        id: message.id,
-      });
-
-      const formData = new FormData(e.currentTarget);
-      await submitMessageAction(formData);
+  const action = async (formData: FormData) => {
+    addOptimisticMessage({
+      content: message.content,
+      createdAt: message.createdAt,
+      createdById: userId,
+      id: message.id,
     });
-  };
 
-  useEffect(() => {
-    if (state.error) {
-      toast.error(state.error);
+    const result = await submitMessage(
+      {
+        success: false,
+      },
+      formData,
+    );
+
+    if (result.error) {
+      toast.error(result.error);
     }
-  }, [state.error, state.timestamp]);
+  };
 
   return (
     <div
@@ -65,7 +60,7 @@ export default function MessageDisplay({ message, userId, addOptimisticMessage }
       <div className="flex flex-row gap-1">
         {message.content}
         {message.hasFailed && (
-          <form className="ml-1 flex flex-row gap-1 text-red-600" onSubmit={onSubmit} action={submitMessageAction}>
+          <form className="ml-1 flex flex-row gap-1 text-red-600" action={action}>
             <Button className="hover:underline" type="submit">
               Failed. Retry?
             </Button>
