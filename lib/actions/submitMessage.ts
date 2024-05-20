@@ -9,14 +9,11 @@ import { getMessages } from '../services/getMessages';
 type State = {
   success: boolean;
   error?: string;
-  timestamp?: Date;
   content?: string;
 };
 
 export async function submitMessage(_prevState: State, formData: FormData): Promise<State> {
   await slow();
-
-  const timestamp = new Date();
 
   const result = messageSchema.safeParse({
     content: formData.get('content'),
@@ -27,7 +24,6 @@ export async function submitMessage(_prevState: State, formData: FormData): Prom
     return {
       error: 'Invalid message!',
       success: false,
-      timestamp,
     };
   }
 
@@ -38,7 +34,6 @@ export async function submitMessage(_prevState: State, formData: FormData): Prom
       content: result.data.content,
       error: 'Your message limit has been reached.',
       success: false,
-      timestamp,
     };
   }
 
