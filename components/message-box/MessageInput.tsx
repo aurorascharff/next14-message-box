@@ -28,7 +28,6 @@ export default function MessageInput({ userId }: Props) {
           defaultValue={state.content}
           required
           minLength={1}
-          disabled={isPending}
           name="content"
           className="italic outline-none"
           placeholder="Type a message..."

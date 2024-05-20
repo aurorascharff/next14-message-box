@@ -20,7 +20,6 @@ export default function AutomaticScroller({ children, className }: Props) {
     if (ref.current) {
       mutationObserver.observe(ref.current, {
         childList: true,
-        subtree: true,
       });
 
       return () => {
