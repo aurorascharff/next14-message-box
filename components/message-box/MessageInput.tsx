@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useActionState, useRef, useTransition } from 'react';
+import React, { useActionState, useRef, useState, useTransition } from 'react';
 import toast from 'react-hot-toast';
 import { v4 as uuidv4 } from 'uuid';
 import { submitMessage } from '@/lib/actions/submitMessage';
@@ -14,15 +14,17 @@ type Props = {
 };
 
 export default function MessageInput({ addOptimisticMessage, addFailedMessage, userId }: Props) {
-  const formRef = useRef<HTMLFormElement>(null);
-  const [, startTransition] = useTransition();
-
   const [state, submitMessageAction] = useActionState(submitMessage, {
     success: false,
   });
 
+  const [defaultValue, setDefaultValue] = useState(state.content);
+  const formRef = useRef<HTMLFormElement>(null);
+  const [, startTransition] = useTransition();
+
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setDefaultValue('');
     const uuid = uuidv4();
     const message = {
       content: e.currentTarget.content.value,
@@ -58,6 +60,7 @@ export default function MessageInput({ addOptimisticMessage, addFailedMessage, u
           autoComplete="off"
           required
           minLength={1}
+          defaultValue={defaultValue}
           name="content"
           className="italic outline-none"
           placeholder="Type a message..."

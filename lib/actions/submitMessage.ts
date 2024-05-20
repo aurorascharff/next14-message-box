@@ -3,7 +3,6 @@
 import { revalidatePath } from 'next/cache';
 import { prisma } from '@/db';
 import { slow } from '@/utils/slow';
-import type { MessageSchemaType } from '@/validations/messageSchema';
 import { messageSchema } from '@/validations/messageSchema';
 import { getMessages } from '../services/getMessages';
 
@@ -11,20 +10,19 @@ export type State = {
   success: boolean;
   error?: string;
   timestamp?: Date;
-  data?: MessageSchemaType;
-  messageId?: string;
+  content?: string;
 };
 
 export async function submitMessage(_prevState: State, formData: FormData): Promise<State> {
   await slow();
+
+  const timestamp = new Date();
 
   const result = messageSchema.safeParse({
     content: formData.get('content'),
     createdById: formData.get('userId'),
     id: formData.get('messageId') || undefined,
   });
-
-  const timestamp = new Date();
 
   if (!result.success) {
     return {
@@ -36,9 +34,9 @@ export async function submitMessage(_prevState: State, formData: FormData): Prom
 
   const messages = await getMessages(result.data.createdById);
 
-  if (messages.length > 15) {
+  if (messages.length > 2) {
     return {
-      data: result.data,
+      content: result.data.content,
       error: 'Your message limit has been reached.',
       success: false,
       timestamp,
