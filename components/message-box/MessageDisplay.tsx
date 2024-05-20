@@ -66,7 +66,6 @@ export default function MessageDisplay({ message, userId, addOptimisticMessage }
             </Button>
             <input type="hidden" name="userId" value={userId} />
             <input type="hidden" name="content" value={message.content} />
-            <input type="hidden" name="messageId" value={message.id} />
             <input type="hidden" name="createdAt" value={message.createdAt.toISOString()} />
           </form>
         )}

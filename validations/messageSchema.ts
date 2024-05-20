@@ -7,5 +7,4 @@ export const messageSchema = z.object({
   createdById: z.string().uuid({
     message: 'Invalid user ID',
   }),
-  id: z.string().optional(),
 });

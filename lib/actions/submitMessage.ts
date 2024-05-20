@@ -21,7 +21,6 @@ export async function submitMessage(_prevState: State, formData: FormData): Prom
   const result = messageSchema.safeParse({
     content: formData.get('content'),
     createdById: formData.get('userId'),
-    id: formData.get('messageId') || undefined,
   });
 
   if (!result.success) {
@@ -34,7 +33,7 @@ export async function submitMessage(_prevState: State, formData: FormData): Prom
 
   const messages = await getMessages(result.data.createdById);
 
-  if (messages.length > 15) {
+  if (messages.length > 3) {
     return {
       content: result.data.content,
       error: 'Your message limit has been reached.',

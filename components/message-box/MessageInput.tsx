@@ -25,18 +25,16 @@ export default function MessageInput({ addOptimisticMessage, addFailedMessage, u
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setDefaultValue('');
-    const uuid = uuidv4();
     const message = {
       content: e.currentTarget.content.value,
       createdAt: new Date(),
       createdById: userId,
-      id: uuid,
+      id: uuidv4(),
     };
 
     startTransition(async () => {
       addOptimisticMessage(message);
       const formData = new FormData(e.currentTarget);
-      formData.append('messageId', uuid);
       formRef.current?.reset();
 
       const result = await submitMessage(
