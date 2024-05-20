@@ -46,12 +46,7 @@ export default function MessageInput({ addOptimisticMessage, addFailedMessage, u
 
       if (result.error) {
         toast.error(result.error);
-        addFailedMessage({
-          content: result.data?.content as string,
-          createdAt: result.timestamp || new Date(),
-          createdById: userId,
-          id: result.data?.id as string,
-        });
+        addFailedMessage(message);
       }
     });
   };
