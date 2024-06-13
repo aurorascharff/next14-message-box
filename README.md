@@ -12,9 +12,9 @@ First, force install the dependencies to make the React 19 Beta work:
 
 ```bash
 npm install --force
-# or
+```
 
-First, run the development server:
+Then, run the development server:
 
 ```bash
 npm run dev
