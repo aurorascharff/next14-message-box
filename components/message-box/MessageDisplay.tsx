@@ -2,10 +2,9 @@
 
 import React from 'react';
 import toast from 'react-hot-toast';
-
 import { submitMessage } from '@/lib/actions/submitMessage';
 import { cn } from '@/utils/cn';
-import Button from '../Button';
+import Button from '../ui/Button';
 import type { OptimisticMessage } from './Messages';
 
 type Props = {
