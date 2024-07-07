@@ -4,7 +4,7 @@ import React, { useActionState, useRef, useState, useTransition } from 'react';
 import toast from 'react-hot-toast';
 import { v4 as uuidv4 } from 'uuid';
 import { submitMessage } from '@/lib/actions/submitMessage';
-import Button from '../Button';
+import SubmitButton from '../SubmitButton';
 import type { OptimisticMessage } from './Messages';
 
 type Props = {
@@ -64,7 +64,7 @@ export default function MessageInput({ addOptimisticMessage, addFailedMessage, u
           placeholder="Type a message..."
         />
         <input type="hidden" name="userId" value={userId} />
-        <Button type="submit">Send</Button>
+        <SubmitButton>Send</SubmitButton>
       </form>
       {state.error && <noscript className="px-6 pb-6 text-end text-red-600">{state.error}</noscript>}
     </>

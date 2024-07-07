@@ -1,8 +1,8 @@
-# Next 14 Message Box
+# Next.js 14 Message Box
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-It displays a messaging box using Next 14 with Server Actions, Tailwind CSS, and Prisma, and is progressively enhanced with React 19 features.
+It displays a messaging box using Next.js 14 with Server Actions, Tailwind CSS, and Prisma, and is progressively enhanced with React 19 features.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
