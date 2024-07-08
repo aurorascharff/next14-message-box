@@ -90,6 +90,13 @@ React 19 the automatically resets uncontrolled inputs automatically after the ac
 
 Notes: Realistic with a real db. Show feedback. We don't need to make an api endpoint and set error states etc like we used to in the next.js app router, which was a hassle. Reference Sams talk "old way".
 
+## Replace with submitButton
+
+- Add submitbutton with useformstatus and spinner
+- Say you can generalize this better
+- Add new button to the rsc-header and code the server action
+- Talk about composability
+
 ## DEMO
 
 - By the way, this works without js!
