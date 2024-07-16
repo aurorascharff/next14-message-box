@@ -4,7 +4,6 @@
 
 - App router, prisma and local DB, tailwind CSS
 - This is now only server components. Show each component.
-"- "but what I'm doing here can be done with client apps with a little more work to create endpoints"
 - Lets enhance this message box with react rsc and react 19! Goal: make it interactive while minimizing js on the client and reducing forntend complexity.
 
 ## Basic form with server action
@@ -12,7 +11,6 @@
 (MessageInput + submitMessage)
 
 - Attach action prop using React's extension of the form element
-- "this could be an action on the client, but since we're using server components, we can pass a server action instead"
 - Code submitMessage server action
 - Submit to db, add hidden userId field
 - RevalidatePath purge cache
@@ -81,7 +79,7 @@ React 19 the automatically resets uncontrolled inputs automatically after the ac
 - Use third argument to show feedback
 - Increase max messages to 8 and demo again
 
-Notes: Realistic with a real db. Show feedback. We don't need to make an api endpoint and set error states etc like we used to in the next.js app router, which was a hassle. Reference Sams talk "old way".
+Notes: Realistic with a real db. Show feedback. We don't need to make an api endpoint and set error states etc like we used to in the next.js app router, which was a hassle.
 
 ## Replace with submitButton
 
