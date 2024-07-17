@@ -97,8 +97,8 @@ Notes: Realistic with a real db. Show feedback. We don't need to make an api end
 ## Replace with submitButton
 
 - Add submitbutton with useformstatus and spinner
-- Say you can generalize this better
-- Add new button to the rsc-header and code the server action
+- Say you can generalize this better, extend button element
+- Add new button to the rsc-header and code the server action, inline server action
 - Talk about composability
 
 ## Optimistic update
