@@ -65,8 +65,8 @@ Notes: Noscript is a fallback.
 
 (MessageInput)
 
-- Return result.data.content in the payload.
 - Explain form reset
+- Return result.data.content in the payload.
 
 Notes:
 React 19 the automatically resets uncontrolled inputs automatically after the action finishes. Follows the mpa form submission behavior. Probably used to using a library that would control forms, like react-hook-form. Not needed. Maintain the entered value when there is error. Maybe this could be changed to be valid. Let's return the content and set it as the defaultValue so it's not lost.
@@ -77,6 +77,7 @@ React 19 the automatically resets uncontrolled inputs automatically after the ac
 
 - Add slow() to server action
 - Use third argument to show feedback
+- Mention pages router
 - Increase max messages to 8 and demo again
 
 Notes: Realistic with a real db. Show feedback. We don't need to make an api endpoint and set error states etc like we used to in the next.js app router, which was a hassle.
@@ -90,8 +91,8 @@ Notes: Realistic with a real db. Show feedback. We don't need to make an api end
 
 ## Explanation
 
-- What we've been doing is progressively enhancing this, meaning ensuring the basic functionality works at the lowest level of resources, no javascript, then adding things on top to enhance the user experience for users with those resources available. By using action, useActionState, providing fallbacks, and native web.
-- Lets say your user is on a slow device or slow connection and still waiting for js to finish downloading, parsing, or executing. This will work before its loaded, and will make the hydration for the JS that we do want load faster, because we reduced the amount of js on the client by utilizing server component and weaving server and client. Now depening on the user’s situation, they will get the better experience, and always have a form that works.
+- What we've been doing is progressively enhancing this, meaning ensuring the basic functionality works at the lowest level of resources, no javascript, then adding things on top to enhance the user experience for users with those resources available.
+- Lets say your user is on a slow device or slow connection and still waiting for js to finish downloading, parsing, or executing. This will work before its loaded, and will make the hydration for the JS that we do want load faster, because we reduced the amount of js on the client weaving the server component and the client together. Now depending on the user’s situation, they will get the better experience, and always have a form that works.
 
 ## Replace with submitButton
 
