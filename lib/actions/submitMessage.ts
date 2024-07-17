@@ -29,7 +29,7 @@ export async function submitMessage(_prevState: State, formData: FormData): Prom
 
   const messages = await getMessages(result.data.createdById);
 
-  if (messages.length > 3) {
+  if (messages.length > 7) {
     return {
       content: result.data.content,
       error: 'Your message limit has been reached.',
