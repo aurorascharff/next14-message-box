@@ -54,8 +54,6 @@ Notes: Could check for any requirements for your data. Create a component state 
 
 (MessageInput)
 
-Input: useEffect handle errors, depend on timestamp. Modify to noscript handler fallback.
-
 - useEffect to toast on error, depend on timestamp and error
 - Change span tag to noscript
 
@@ -77,7 +75,6 @@ React 19 the automatically resets uncontrolled inputs automatically after the ac
 
 - Add slow() to server action
 - Use third argument to show feedback
-- Mention pages router
 - Increase max messages to 8 and demo again
 
 Notes: Realistic with a real db. Show feedback. We don't need to make an api endpoint and set error states etc like we used to in the next.js app router, which was a hassle.
@@ -95,6 +92,8 @@ Notes: Realistic with a real db. Show feedback. We don't need to make an api end
 - Lets say your user is on a slow device or slow connection and still waiting for js to finish downloading, parsing, or executing. This will work before its loaded, and will make the hydration for the JS that we do want load faster, because we reduced the amount of js on the client weaving the server component and the client together. Now depending on the user’s situation, they will get the better experience, and always have a form that works.
 
 ## Replace with submitButton
+
+(SubmitButton + MessageBox)
 
 - Add submitbutton with useformstatus and spinner
 - Say you can generalize this better, extend button element
