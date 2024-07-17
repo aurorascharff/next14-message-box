@@ -3,18 +3,19 @@
 import React from 'react';
 import toast from 'react-hot-toast';
 import { submitMessage } from '@/lib/actions/submitMessage';
+import type { OptimisticMessage } from '@/providers/MessagesProvider';
+import { useMessages } from '@/providers/MessagesProvider';
 import { cn } from '@/utils/cn';
 import Button from '../ui/Button';
-import type { OptimisticMessage } from './Messages';
 
 type Props = {
   message: OptimisticMessage;
   userId: string;
-  addOptimisticMessage: (_message: OptimisticMessage) => void;
 };
 
-export default function MessageDisplay({ message, userId, addOptimisticMessage }: Props) {
+export default function MessageDisplay({ message, userId }: Props) {
   const isWrittenByUser = userId === message.createdById;
+  const { addOptimisticMessage } = useMessages();
 
   const action = async (formData: FormData) => {
     addOptimisticMessage({
