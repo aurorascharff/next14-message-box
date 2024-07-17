@@ -72,7 +72,7 @@ export default function Messages({ messages, userId }: Props) {
           );
         })}
       </AutomaticScroller>
-      <ErrorBoundary fallback={<p className="px-6 pb-8 pt-14 text-end">⚠️Something went wrong</p>}>
+      <ErrorBoundary fallback={<p className="px-6 pb-8 pt-[58px] text-end">⚠️Something went wrong</p>}>
         <MessageInput addFailedMessage={addFailedMessage} addOptimisticMessage={addOptimisticMessage} userId={userId} />
       </ErrorBoundary>
     </div>
