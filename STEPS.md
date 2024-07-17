@@ -30,12 +30,12 @@ Notes: Contains a children prop. Could be any prop. Can pass anything here, for 
 
 (submitMessage)
 
-- Validate data with zod, throw error
+- Validate data with zod by moving object, throw error, use result in db insert
 - Remove required on input
 - Add error boundary and show it triggering
 - Add back required on input
 
-Notes: Don't trust the input from the client.
+Notes: Don't trust the input from the client. Handle errors however, for example error boundary.
 
 ## Return validation
 
@@ -81,13 +81,6 @@ React 19 the automatically resets uncontrolled inputs automatically after the ac
 
 Notes: Realistic with a real db. Show feedback. We don't need to make an api endpoint and set error states etc like we used to in the next.js app router, which was a hassle.
 
-## Replace with submitButton
-
-- Add submitbutton with useformstatus and spinner
-- Say you can generalize this better
-- Add new button to the rsc-header and code the server action
-- Talk about composability
-
 ## DEMO
 
 - By the way, this works without js!
@@ -110,3 +103,10 @@ Notes: Realistic with a real db. Show feedback. We don't need to make an api end
 - Send multiple messages slowly, then many until it fails
 
 Notes: Can even enhance this further with optimistic updates. This still works without js. Adding an onSubmit for client-side js only functionality, use a state with defaultvalue maintain the progressive enhancement.
+
+## Replace with submitButton
+
+- Add submitbutton with useformstatus and spinner
+- Say you can generalize this better
+- Add new button to the rsc-header and code the server action
+- Talk about composability
