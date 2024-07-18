@@ -4,7 +4,7 @@
 
 - App router, prisma and local DB, tailwind CSS
 - This is now only server components. Show each component.
-- Lets enhance this message box with rsc and react 19! Goal: make it interactive while minimizing js on the client and reducing forntend complexity.
+- Lets enhance this message box with react rsc and react 19! Goal: make it interactive while minimizing js on the client and reducing forntend complexity.
 
 ## Basic form with server action
 
@@ -95,7 +95,7 @@ Notes: Realistic with a real db. Show feedback. We don't need to make an api end
 
 (SubmitButton + MessageBox)
 
-- Copy exisiting button, add submitbutton with useformstatus and spinner
+- Extract button to submitbutton with useformstatus and spinner
 - Say you can generalize this better, extend button element
 - Add new button to the rsc-header and code the server action, inline server action: "use server", slow, delete, revalidate
 - Talk about composability
@@ -109,4 +109,5 @@ Notes: Realistic with a real db. Show feedback. We don't need to make an api end
 - Send multiple messages slowly, then many until it fails
 
 Notes: Can even enhance this further with optimistic updates. This still works without js. Adding an onSubmit for client-side js only functionality, use a state with defaultvalue maintain the progressive enhancement.
+
 Of course, depending on your app you can decide how to implement forms and whether you still want your react-hook form and whatnot, but by using the the more primitive features of the web together with React 19 and React Server Components, we can make our forms very robust and while maintaining a great user experience.
