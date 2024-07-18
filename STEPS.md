@@ -4,7 +4,7 @@
 
 - App router, prisma and local DB, tailwind CSS
 - This is now only server components. Show each component.
-- Lets enhance this message box with react rsc and react 19! Goal: make it interactive while minimizing js on the client and reducing forntend complexity.
+- Lets enhance this message box with rsc and react 19! Goal: make it interactive while minimizing js on the client and reducing forntend complexity.
 
 ## Basic form with server action
 
