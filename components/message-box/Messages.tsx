@@ -12,7 +12,7 @@ type Props = {
 };
 
 export default function Messages({ userId }: Props) {
-  const { addOptimisticMessage, allMessages, addFailedMessage } = useMessages();
+  const { allMessages } = useMessages();
 
   return (
     <div className="grid border-x border-b border-gray-300">
@@ -23,7 +23,7 @@ export default function Messages({ userId }: Props) {
         })}
       </AutomaticScroller>
       <ErrorBoundary fallback={<p className="px-6 pb-8 pt-[58px] text-end">⚠️Something went wrong</p>}>
-        <MessageInput addFailedMessage={addFailedMessage} addOptimisticMessage={addOptimisticMessage} userId={userId} />
+        <MessageInput userId={userId} />
       </ErrorBoundary>
     </div>
   );

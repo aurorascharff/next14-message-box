@@ -4,16 +4,15 @@ import React, { useActionState, useRef, useState, useTransition } from 'react';
 import toast from 'react-hot-toast';
 import { v4 as uuidv4 } from 'uuid';
 import { submitMessage } from '@/lib/actions/submitMessage';
+import { useMessages } from '@/providers/MessagesProvider';
 import SubmitButton from '../SubmitButton';
-import type { OptimisticMessage } from './Messages';
 
 type Props = {
-  addOptimisticMessage: (_message: OptimisticMessage) => void;
-  addFailedMessage: (_message: OptimisticMessage) => void;
   userId: string;
 };
 
-export default function MessageInput({ addOptimisticMessage, addFailedMessage, userId }: Props) {
+export default function MessageInput({ userId }: Props) {
+  const { addOptimisticMessage, addFailedMessage } = useMessages();
   const [state, submitMessageAction] = useActionState(submitMessage, {
     success: false,
   });
