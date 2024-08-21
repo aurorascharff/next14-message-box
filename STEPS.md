@@ -4,7 +4,7 @@
 
 - App router, prisma and local DB, tailwind CSS
 - This is now only server components. Show each component.
-- Lets enhance this message box with react rsc and react 19! Goal: make it interactive while minimizing js on the client and reducing forntend complexity.
+- Lets enhance this message box with rsc and react 19! Goal: make it interactive while minimizing js on the client and reducing forntend complexity.
 
 ## Basic form with server action
 
@@ -12,7 +12,7 @@
 
 - Attach action prop using React's extension of the form element
 - Code submitMessage server action
-- Submit to db, add hidden userId field
+- Submit to db, add hidden userId field. Mention .bind as an way to pass additional props. NB! Should be a part of the cookie or course and authentication but this is a demo, use auth or getcurrentuser.
 - RevalidatePath purge cache
 
 Notes: Lets start with the basic funcitonality. Make the form work and submit after reload with form action and hidden userId. When called with server action, behaves differently than native form, server action will have a post endpoint generated and be called without js. Then revalidatePath. “Just by doing that…”. Using native forms rather than buttons with onClicks, “had we used the onSubmit we would need React to have hydrated this page to be able to submit the form”.
