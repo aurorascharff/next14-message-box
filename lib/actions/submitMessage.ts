@@ -13,6 +13,12 @@ type State = {
   content?: string;
 };
 
+/**
+ *
+ * Disclaimer: You wouldn´t want to pass the user id from the client side like this in a real app.
+ * It´s simply an example on how to pass additional params.
+ * You would want an authentication system and to do everything server-side.
+ */
 export async function submitMessage(_prevState: State, formData: FormData): Promise<State> {
   await slow();
 
