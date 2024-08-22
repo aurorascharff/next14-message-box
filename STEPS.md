@@ -30,7 +30,7 @@ Notes: Contains a children prop. Could be any prop. Can pass anything here, for 
 
 (submitMessage)
 
-- Validate data with zod by moving object, throw error, use result in db insert
+- Validate data with zod by moving object, throw error, use result in db insert, remove "as string"
 - Remove required on input
 - Add error boundary and show it triggering
 - Add back required on input
@@ -46,7 +46,7 @@ Notes: Don't trust the input from the client. Handle errors however, for example
 - Return success
 - Get this to the user: useActionState, add initial state and add span "errorMessage"
 - Show the error in the form.
-- Pass _prevState and return Promise< State>
+- Pass _prevState
 
 Notes: Could check for any requirements for your data. Create a component state when a form action is invoked. Can be called without js and return state without js. UseActionState returns a wrapped action, when called useActionState will return the last result of the action. Could use this to return the field errors.
 
