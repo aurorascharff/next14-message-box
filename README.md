@@ -4,6 +4,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 It displays a messaging box using Next.js 14 with Server Actions, Tailwind CSS, and Prisma, and is progressively enhanced with React 19 features.
 
+A deployed, slightly altered version of the optimistic message box can be found [here](https://next15-remix-contacts-rebuild-v2.vercel.app/).
+
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
 ## Getting Started
