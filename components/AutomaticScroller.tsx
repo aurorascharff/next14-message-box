@@ -11,7 +11,7 @@ export default function AutomaticScroller({ children, className }: Props) {
   const ref = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
-    const mutationObserver = new MutationObserver(async () => {
+    const mutationObserver = new MutationObserver(() => {
       if (ref.current) {
         ref.current.scroll({ behavior: 'smooth', top: ref.current.scrollHeight });
       }
@@ -21,12 +21,12 @@ export default function AutomaticScroller({ children, className }: Props) {
       mutationObserver.observe(ref.current, {
         childList: true,
       });
-
-      return () => {
-        mutationObserver.disconnect();
-      };
     }
-  }, [ref]);
+
+    return () => {
+      mutationObserver.disconnect();
+    };
+  }, []);
 
   return (
     <div ref={ref} className={className}>
