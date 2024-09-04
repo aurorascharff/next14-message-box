@@ -1,6 +1,6 @@
 import React from 'react';
-import { getCurrentUser } from '@/lib/services/getCurrentUser';
-import { getMessages } from '@/lib/services/getMessages';
+import { getCurrentUser } from '@/data/services/getCurrentUser';
+import { getMessages } from '@/data/services/getMessages';
 import MessageDisplay from './MessageDisplay';
 import MessageInput from './MessageInput';
 
