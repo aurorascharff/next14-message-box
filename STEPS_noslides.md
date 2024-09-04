@@ -121,4 +121,4 @@ Notes: Can even enhance this further with optimistic updates. This still works w
 
 Of course, depending on your app you can decide how to implement forms and whether you still want your react-hook form and whatnot, but by using the the more primitive features of the web together with React 19 and React Server Components, we can make our forms very robust and while maintaining a great user experience. And there is alot more to come from these. They will be primitives for libraries simpliying things for developers, focus on building apps.
 
-That's it for this demo, the code is pinned on my GitHub and the optimistic update is on a branch, and follow me on Twitter if you are interested in more rsc content. Thanks for listening and thanks React Conf!
+That's it for this demo, the code is pinned on my GitHub and the optimistic update is on a branch, and follow me on Twitter if you are interested in more rsc content. Thanks for listening and thanks React Universe Conf!
