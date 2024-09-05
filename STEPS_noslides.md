@@ -4,7 +4,7 @@
 
 - Thanks for the introduction
 - Aurora, web dev, norway, consultant at Inmeta in oslo, not meta, we had this name in 1996
-- I was able to step in for another speaker, and its been hectic getting here, but Im super excited to be here to be speaking here today to teach you about enhancing your forms with rsc
+- I was able to step in for another speaker, and its been hectic getting here, but Im super excited to be here to be speaking here today to teach you about enhancing your forms with rsc with a practical example.
 - Going to code a simplified version of something i’ve built for my customer project, where im actively using React Server Components, and it's working well for us.
 
 ## Setup and starting point
