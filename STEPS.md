@@ -20,7 +20,7 @@
 
 - Attach action prop using React's extension of the form element, auto transition
 - "this could be an action on the client, but since we're using server components, we can pass a server action instead"
-- Code submitMessage server action
+- Code submitMessage server action, data access layer
 - Submit to db, add hidden userId field. Mention .bind as an way to pass additional props. NB! Should be a part of the cookie or course and authentication but this is a demo, use auth or getcurrentuser.
 - RevalidatePath purge cache
 
