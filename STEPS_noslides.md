@@ -24,7 +24,7 @@
 - Submit to db, add hidden userId field. Mention .bind as an way to pass additional props. NB! Should be a part of the cookie or course and authentication but this is a demo, use auth or getcurrentuser.
 - RevalidatePath purge cache
 
-Notes: Lets start with the basic funcitonality. Make the form work and submit after reload with form action and hidden userId. When called with server action, behaves differently than native form, server action will have a post endpoint generated and be called without js. Then revalidatePath. “Just by doing that…”. Using native forms rather than buttons with onClicks, “had we used the onSubmit we would need React to have hydrated this page to be able to submit the form”.
+Notes: Lets start with the basic funcitonality. Make the form work and submit after reload with form action and hidden userId. When called with server action, behaves differently than native form, server action will have a post endpoint generated and be **exposed to the client** and can called without js. Then revalidatePath. “Just by doing that…”. Using native forms rather than buttons with onClicks, “had we used the onSubmit we would need React to have hydrated this page to be able to submit the form”.
 
 ## Add scroll handler
 
@@ -44,7 +44,7 @@ Notes: Contains a children prop. Could be any prop. Can pass anything here, for 
 - Add error boundary and show it triggering
 - Add back required on input
 
-Notes: Don't trust the input from the client. Handle errors however, for example error boundary.
+Notes: Don't trust the input from the client. Handle errors however, for example error boundary. Show zod.
 
 ## Return validation
 

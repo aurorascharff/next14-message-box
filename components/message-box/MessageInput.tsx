@@ -3,7 +3,7 @@
 import React, { useActionState, useEffect, useRef, useState, useTransition } from 'react';
 import toast from 'react-hot-toast';
 import { v4 as uuidv4 } from 'uuid';
-import { submitMessage } from '@/lib/actions/submitMessage';
+import { submitMessage } from '@/data/actions/submitMessage';
 import SubmitButton from '../SubmitButton';
 import type { OptimisticMessage } from './Messages';
 

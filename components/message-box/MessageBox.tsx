@@ -1,13 +1,24 @@
+import { revalidatePath } from 'next/cache';
 import React from 'react';
-import { resetMessages } from '@/lib/actions/resetMessages';
-import { getCurrentUser } from '@/lib/services/getCurrentUser';
-import { getMessages } from '@/lib/services/getMessages';
+import { getCurrentUser } from '@/data/services/getCurrentUser';
+import { getMessages } from '@/data/services/getMessages';
+import { prisma } from '@/db';
+import { slow } from '@/utils/slow';
 import SubmitButton from '../SubmitButton';
 import Messages from './Messages';
 
 export default async function MessageBox() {
   const messages = await getMessages();
   const user = await getCurrentUser();
+
+  // Should be extracted into data/actions/resetMessages.ts
+  async function resetMessages() {
+    'use server';
+
+    await slow();
+    await prisma.message.deleteMany();
+    revalidatePath('/');
+  }
 
   return (
     <div className="flex w-full flex-col shadow-xl sm:w-[400px]">
