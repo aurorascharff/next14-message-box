@@ -4,7 +4,7 @@
 
 - Thanks for the introduction
 - Aurora, web dev, norway, consultant at Inmeta in oslo, not meta, we had this name in 1996
-- I was able to step in for another speaker, and its been hectic getting here, but Im super excited to be here to be speaking here today to teach you about enhancing your forms with rsc with a practical example.
+- I was able to step in for another speaker, and its been hectic getting here, but Im super excited to be here to be speaking here today. Will be demoing a practical example on how to enhance forms with react server components.
 - Going to code a simplified version of something i’ve built for my customer project, where im actively using React Server Components, and it's working well for us.
 
 ## Setup and starting point
@@ -30,7 +30,7 @@ Notes: Lets start with the basic funcitonality. Make the form work and submit af
 
 (MessageBox)
 
-- Add donut pattern listener snippet and explain.
+- Add donut pattern listener and explain, try it out
 - Show the devtools that the server components arent there but the scroller is
 
 Notes: Contains a children prop. Could be any prop. Can pass anything here, for example server components. Only the js for the scroll handler is loaded.
@@ -107,7 +107,8 @@ Notes: Realistic with a real db. Show feedback. We don't need to make an api end
 - Extract button to submitbutton with useformstatus and spinner
 - Say you can generalize this better, extend button element
 - Add new button to the rsc-header and code the server action, inline server action: "use server", slow, delete, revalidate
-- Talk about composability
+
+Completely composable and standardized SubmitButton for our application. Pretty amazing.
 
 ## Optimistic update
 
