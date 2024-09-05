@@ -25,7 +25,7 @@ export async function submitMessage(_prevState: State, formData: FormData): Prom
 
   const result = messageSchema.safeParse({
     content: formData.get('content'),
-    createdById: formData.get('userId'),
+    createdById: formData.get('createdById'),
   });
 
   if (!result.success) {

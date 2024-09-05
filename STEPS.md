@@ -4,13 +4,13 @@
 
 - Thanks for the introduction
 - Aurora, web dev, norway, consultant at Inmeta in oslo, not meta, we had this name in 1996
-- I was able to step in for another speaker, and its been hectic getting here, but Im super excited to be here to be speaking here today. Will be demoing a practical example on how to enhance forms with react server components.
+- I was able to step in for another speaker, and its been hectic getting here, but Im super excited to be here to be speaking here today. Will be demoing a practical example on working with forms and react server components.
 - Going to code a simplified version of something i’ve built for my customer project, where im actively using React Server Components, and it's working well for us.
 
 ## Setup and starting point
 
 - App router, prisma and local DB, tailwind CSS
-- This is now only server components. Show each component.
+- This is now only server components. Show each component. Explain server components
 "- "but what I'm doing here can be done with client apps with a little more work to create endpoints"
 - Lets enhance this message box with rsc and react 19! Goal: make it interactive while minimizing js on the client and reducing forntend complexity.
 
@@ -18,9 +18,9 @@
 
 (MessageInput + submitMessage)
 
-- Attach action prop using React's extension of the form element
+- Attach action prop using React's extension of the form element, auto transition
 - "this could be an action on the client, but since we're using server components, we can pass a server action instead"
-- Code submitMessage server action
+- Code submitMessage server action, data access layer
 - Submit to db, add hidden userId field. Mention .bind as an way to pass additional props. NB! Should be a part of the cookie or course and authentication but this is a demo, use auth or getcurrentuser.
 - RevalidatePath purge cache
 
