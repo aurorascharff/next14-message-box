@@ -17,7 +17,7 @@
 			"/**",
 			" * Disclaimer: You don’t want to pass userId from the client-side in a real app.",
 			" * It’s simply an example on how to pass additional params.",
-			" * You would want a server-side authentication setup i.e getCurrentUser()",
+			" * You would want a server-side authentication setup i.e getCurrentUser().",
 			" */"
 		],
 		"scope": "typescript",
@@ -34,7 +34,7 @@
 		"scope": "typescriptreact",
 		"prefix": "errorBoundary",
 		"body": [
-			"<ErrorBoundary fallback={<p className=\"px-6 pb-8 pt-[58px] text-end\">⚠️Something went wrong</p>}>",
+			"<ErrorBoundary fallback={<p className=\"px-6 pb-6 pt-[66px] text-end\">⚠️Something went wrong</p>}>",
 			"\t$1",
 			"</ErrorBoundary>"
 		],
