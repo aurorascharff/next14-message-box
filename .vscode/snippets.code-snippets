@@ -15,9 +15,9 @@
 	"disclaimer": {
 		"body": [
 			"/**",
-			" * Disclaimer: You wouldn’t want to pass the user id from the client side like this in a real app.",
+			" * Disclaimer: You don’t want to pass userId from the client-side in a real app.",
 			" * It’s simply an example on how to pass additional params.",
-			" * You would want to do everything server-side with an authentication setup and something like getCurrentUser()",
+			" * You would want a server-side authentication setup i.e getCurrentUser()",
 			" */"
 		],
 		"scope": "typescript",
