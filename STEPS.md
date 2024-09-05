@@ -1,9 +1,17 @@
 # DEMO STEPS
 
+## Introduction
+
+- Thanks for the introduction
+- Aurora, web dev, norway, consultant at Inmeta in oslo, not meta, we had this name in 1996
+- I was able to step in for another speaker, and its been hectic getting here, but Im super excited to be here to be speaking here today to teach you about enhancing your forms with rsc with a practical example.
+- Going to code a simplified version of something i’ve built for my customer project, where im actively using React Server Components, and it's working well for us.
+
 ## Setup and starting point
 
 - App router, prisma and local DB, tailwind CSS
 - This is now only server components. Show each component.
+"- "but what I'm doing here can be done with client apps with a little more work to create endpoints"
 - Lets enhance this message box with rsc and react 19! Goal: make it interactive while minimizing js on the client and reducing forntend complexity.
 
 ## Basic form with server action
@@ -11,8 +19,9 @@
 (MessageInput + submitMessage)
 
 - Attach action prop using React's extension of the form element
+- "this could be an action on the client, but since we're using server components, we can pass a server action instead"
 - Code submitMessage server action
-- Submit to db, add hidden userId field. Mention .bind as an way to pass additional props. NB! Should be a part of the cookie or course and authentication but this is a demo, use auth or getcurrentuser. Disclaimer-snippet.
+- Submit to db, add hidden userId field. Mention .bind as an way to pass additional props. NB! Should be a part of the cookie or course and authentication but this is a demo, use auth or getcurrentuser.
 - RevalidatePath purge cache
 
 Notes: Lets start with the basic funcitonality. Make the form work and submit after reload with form action and hidden userId. When called with server action, behaves differently than native form, server action will have a post endpoint generated and be **exposed to the client** and can called without js. Then revalidatePath. “Just by doing that…”. Using native forms rather than buttons with onClicks, “had we used the onSubmit we would need React to have hydrated this page to be able to submit the form”.
@@ -35,7 +44,7 @@ Notes: Contains a children prop. Could be any prop. Can pass anything here, for 
 - Add error boundary and show it triggering
 - Add back required on input
 
-Notes: Don't trust the input from the client. Handle errors however, for example error boundary.
+Notes: Don't trust the input from the client. Handle errors however, for example error boundary. Show zod.
 
 ## Return validation
 
@@ -111,3 +120,5 @@ Notes: Realistic with a real db. Show feedback. We don't need to make an api end
 Notes: Can even enhance this further with optimistic updates. This still works without js. Adding an onSubmit for client-side js only functionality, use a state with defaultvalue maintain the progressive enhancement.
 
 Of course, depending on your app you can decide how to implement forms and whether you still want your react-hook form and whatnot, but by using the the more primitive features of the web together with React 19 and React Server Components, we can make our forms very robust and while maintaining a great user experience. And there is alot more to come from these. They will be primitives for libraries simpliying things for developers, focus on building apps.
+
+That's it for this demo, the code is pinned on my GitHub and the optimistic update is on a branch, and follow me on Twitter if you are interested in more rsc content. Thanks for listening and thanks React Universe Conf!
