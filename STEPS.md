@@ -100,6 +100,8 @@ Notes: Realistic with a real db. Show feedback. We don't need to make an api end
 - Add new button to the rsc-header and code the server action, inline server action: "use server", slow, delete, revalidate
 - Talk about composability
 
+Notes: useFormStatus must be called inside a component inside a form, it’s basically using the form as a context.
+
 ## Optimistic update
 
 - Stash current code
