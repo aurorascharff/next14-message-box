@@ -44,7 +44,7 @@ Notes: Contains a children prop. Could be any prop. Can pass anything here, for 
 - Add error boundary and show it triggering
 - Add back required on input
 
-Notes: Don't trust the input from the client. Handle errors however, for example error boundary.
+Notes: Don't trust the input from the client. Handle errors however, for example error boundary. Show zod.
 
 ## Return validation
 
