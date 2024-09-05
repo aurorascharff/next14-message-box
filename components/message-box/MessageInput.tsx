@@ -32,7 +32,7 @@ export default function MessageInput({ userId }: Props) {
           className="italic outline-none"
           placeholder="Type a message..."
         />
-        <input type="hidden" name="userId" value={userId} />
+        <input type="hidden" name="createdById" value={userId} />
         <SubmitButton>Send</SubmitButton>
       </form>
       {state.error && <noscript className="px-6 pb-6 text-end text-red-600">{state.error}</noscript>}

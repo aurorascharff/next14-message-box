@@ -39,7 +39,7 @@ export default async function MessageBox() {
             return <MessageDisplay userId={user.id} key={message.id} message={message} />;
           })}
         </AutomaticScroller>
-        <ErrorBoundary fallback={<p className="px-6 pb-8 pt-[58px] text-end">⚠️Something went wrong</p>}>
+        <ErrorBoundary fallback={<p className="px-6 pb-6 pt-[66px] text-end">⚠️Something went wrong</p>}>
           <MessageInput userId={user.id} />
         </ErrorBoundary>
       </div>
