@@ -104,11 +104,12 @@ Notes: Realistic with a real db. Show feedback. We don't need to make an api end
 
 (SubmitButton + MessageBox)
 
+- Reuse this logic
 - Extract button to submitbutton with useformstatus and spinner
 - Say you can generalize this better, extend button element
 - Add new button to the rsc-header and code the server action, inline server action: "use server", slow, delete, revalidate
 
-Completely composable and standardized SubmitButton for our application. Pretty amazing.
+Completely composable and standardized SubmitButton for our application. Pretty amazing. Power of RSC.
 
 ## Optimistic update
 
