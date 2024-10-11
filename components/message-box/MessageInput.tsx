@@ -40,7 +40,7 @@ export default function MessageInput({ addOptimisticMessage, userId }: Props) {
         createdById: userId,
         id: uuidv4(),
       });
-      await submitMessageAction(new FormData(e.currentTarget));
+      submitMessageAction(new FormData(e.currentTarget));
       formRef.current?.reset();
     });
   };
