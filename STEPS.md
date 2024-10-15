@@ -1,99 +1,95 @@
 # DEMO STEPS
 
-## Introduction
+## (Introduction)
 
 - Thanks for the introduction
-- Aurora, web dev, norway, consultant at Inmeta in oslo, not meta, we had this name in 1996
-- I was able to step in for another speaker, and its been hectic getting here, but Im super excited to be here to be speaking here today. Will be demoing a practical example on working with forms and react server components.
+- Aurora, I'm a web dev in norway, and I work as consultant at Inmeta in Oslo
+- I'm super excited to be here to be speaking here today, and I will be demoing a practical example on working with forms and react server components.
 - Going to code a simplified version of something i’ve built for my customer project, where im actively using React Server Components, and it's working well for us.
 
 ## Setup and starting point
 
-- App router, prisma and local DB, tailwind CSS
-- This is now only server components. Show each component. Explain server components. What are server components?
-"- "but what I'm doing here can be done with client apps with a little more work to create endpoints"
-- Lets enhance this message box with rsc and react 19! Goal: make it interactive while minimizing js on the client and reducing forntend complexity.
+- I'm here in the Next.js App router, prisma as ORM and local DB, tailwind CSS.
+- Since I'm in the App Router, everything is a server component my default.
+- Message box is a server component, will never run on the client, and it can be async component and asynchronously fetching messages, map to message display, and a message input.
+- This is now only server components, but what I'm doing here can be done with client apps with a little more work to create endpoints.
+- Lets enhance this message box with rsc and react 19! Goal: make it interactive while minimizing js on the client and reducing frontend complexity.
 
-## Basic form with server action
+## Make the MessageInput form work with an action
 
-(MessageInput + submitMessage)
+- Lets start with the basic functionality. Make the form work.
+- Attach action prop using React 19s extension of the form element, bind to a function, in this case a server function. When called with a function, behaves differently than native form, can be called without js.
+- This could be an action on the client, but since we're using server components, we can pass a server function instead. Server function auto wrapped in transition.
+- Create submitMessage server function, data access layer /actions. Define server functions with "use server", allowing the functions inside this file to be "exposed to the client" and call server code from the client, next.js essentially creates a hidden API endpoint for the functions in this file.
+- Takes in type formData, what this means is that each field will be submitted with its value inside this formData object. Get by name.
+- Submit to db, type "as string", leave "createdById", add hidden userId field. Mention .bind as an way to pass additional props.
+- Disclaimer: Don't pass userId from the client, this is an example, server-side auth setup
+- Submit, refresh page, revalidatePath purge cache and regenerate all server components for this page, submit again.
+- Just by doing that, using native forms rather than buttons with onClicks, had we used the onSubmit we would need React to have hydrated this page to be able to submit the form.
 
-- Attach action prop using React's extension of the form element, auto transition
-- "this could be an action on the client, but since we're using server components, we can pass a server action instead"
-- Code submitMessage server action, data access layer
-- Submit to db, add hidden userId field. Mention .bind as an way to pass additional props. NB! Should be a part of the cookie or course and authentication but this is a demo, use auth or getcurrentuser.
-- RevalidatePath purge cache
+## Add scroll handler in AutomaticScroller
 
-Notes: Lets start with the basic funcitonality. Make the form work and submit after reload with form action and hidden userId. When called with server action, behaves differently than native form, server action will have a post endpoint generated and be **exposed to the client** and can called without js. Server code run from the client. Then revalidatePath. “Just by doing that…”. Using native forms rather than buttons with onClicks, “had we used the onSubmit we would need React to have hydrated this page to be able to submit the form”.
+- Did you notice, I'm stuck in this scroll position, I can't see the new messages.
+- To fix that, messageBox, replace with automaticscoller
+- Client component with effect, scroll bottom new child. Clearly client, since its using children (could be any other prop), we can put server comp inside without converting them. Only the js fro the scroll handler is shipped.
+- Try it out, scroll. Check devtools: no messageDisplays inside the devtools, only scroller, the other are server components.
 
-## Add scroll handler
+## Validate data in submitMessage
 
-(MessageBox)
+- Next thing, validate our data, client side untrusted input.
+- validate as result, safeParse with messageSchema, add object from the db insert into the safeParse
+- Show messageSchema, explain zod runtime validator, check our object is following rules, remove "as string"
+- If result failed, throw error "invalid message data"
+- Comment out client side validation, invalid message, get error thrown
+- Handle errors different ways, here use error boundary around message input, if there is error, it's caught and shown in the error boundary.
+- But back client side validation
 
-- Add donut pattern listener and explain, try it out
-- Show the devtools that the server components arent there but the scroller is
+## Return validation instead of throw
 
-Notes: Contains a children prop. Could be any prop. Can pass anything here, for example server components. Only the js for the scroll handler is loaded.
+- I don't want to throw error, I want to return success and the error, and timestamp, see later. Create timestamp.
+- Something else on the server: query db, whatever.
+- Check messages for user, if more than 5, return error "user has reached the message limit" + timestamp and success false
+- You can also return the errors for each field to display in the form, but I only have one input field here
+- Otherwise, insert db, if it fails, errors boundary can handle
+- Return success true
+- I have server side logic, get it to the message input and to the user: useActionState, takes in a function to call, the action, submitMessage, and initial state. Returns generated component state, equal first initial state and after that, the last returned value of the action that useActionState is wrapping. Also get a wrapped action, submitMessageAction by convention. Can be return without js.
+- Render the error in the form.
+- Problem: tell bundler to load client side js with "use client".
+- Also typescript: The action useActionState is wrapping will also receive and additional argument, _prevState
+- Test out until we hit max message count after 3, hit max message, error is returned and rendered.
 
-## Validate data
+## Add interactivity, toast message count
 
-(submitMessage)
-
-- Validate data with zod by moving object, throw error, use result in db insert, remove "as string"
-- Remove required on input
-- Add error boundary and show it triggering
-- Add back required on input
-
-Notes: Don't trust the input from the client. Handle errors however, for example error boundary. Show zod.
-
-## Return validation
-
-(submitMessage)
-
-- Return instead of throw error and timestamp (create timestamp)
-- Add max limit messages sent 5.
-- Return success
-- Get this to the user: useActionState, add initial state and add span "errorMessage"
-- Show the error in the form.
-- Pass _prevState
-
-Notes: Could check for any requirements for your data. Create a component state when a form action is invoked. Can be called without js and return state without js. UseActionState returns a wrapped action, when called useActionState will return the last result of the action. Could use this to return the field errors.
-
-## Toast message count
-
-(MessageInput)
-
-- useEffect to toast on error, depend on timestamp and error
-- Change span tag to noscript
-
-Notes: Noscript is a fallback.
+- Rather use a toast, feel better, more interactive.
+- useEffect to toast on error, depend on timestamp and error, dependencies + timestamp, rerun whenever timestamp or error changes.
+- Submit, see toast and error message.
+- I no longer need the error text. Leave it as a noscript fallback.
+- Try, no more error.
 
 ## Return content for rollback on reset
 
-(MessageInput)
-
-- Explain form reset
-- Return result.data.content in the payload.
-
-Notes:
-React 19 the automatically resets uncontrolled inputs automatically after the action finishes. Follows the mpa form submission behavior. Probably used to using a library that would control forms, like react-hook-form. Not needed. Maintain the entered value when there is error. Maybe this could be changed to be valid. Let's return the content and set it as the defaultValue so it's not lost.
+- On an error, my form resets.
+- The reason is that in React 19, when using uncontrolled inputs and form action, the form automatically resets after the action finishes. Good because it follows the mpa form submission behavior. But here, we want to maintain the entered value when there is an error.
+- Probably used to using a library that would create a controlled form state, like react-hook-form or formik. Not needed, this is uncontrolled.
+- In this case, I don't want to reset the form. Maintain the entered value when there is error. Maybe this could be changed to be valid. Let's return the content and set it as the defaultValue so it's not lost.
+- When the state returns with an error, it will be the defaultValue, pretty nice.
 
 ## Slow server action
 
-(submitMessage, MessageInput)
+- One more thing. Make it more realistic. Im using local db, the round trip could take a while.
+- Add slow() to server function. See how it feels, not seeing instant feedback, hitting button multiple times.
+- UseActionState return third value, isPending. Pending state of the action. Use it to disable button and say "sending...".
+- Demo, seeing loading state.
+- Increase max messages to 8 and demo again, working again, pending and reset, and scroll.
+- No hassle like in the pages router with handling errors and loading states
 
-- Add slow() to server action
-- Use third argument to show feedback
-- Increase max messages to 8 and demo again
+## Showcase form without JS
 
-Notes: Realistic with a real db. Show feedback. We don't need to make an api endpoint and set error states etc like we used to in the next.js app router, which was a hassle.
-
-## DEMO
-
-- By the way, this works without js!
-- Add some, we dont get automatic scrolling or button feedback or toasts, because all that requires js on the client.
-- Demo without js until it fails.
-- Turn js back on and show the feedback.
+- Whats interesting, this whole form works without js! Turn off js.
+- Add one "no javascript", we didn't get automatic scrolling or button feedback, and a full page refresh, because all that requires js on the client. But everything worked.
+- Demo without js until it fails. "still no js", "no js".
+- Hit max messages, "user has reached the message limit", noscript fallback.
+- Turn js back on, reload page, and show the feedback.
 
 ## Explanation
 
@@ -102,25 +98,30 @@ Notes: Realistic with a real db. Show feedback. We don't need to make an api end
 
 ## Replace with submitButton
 
-(SubmitButton + MessageBox)
-
-- Reuse this logic
-- Extract button to submitbutton with useformstatus and spinner
-- Say you can generalize this better, extend button element
-- Add new button to the rsc-header and code the server action, inline server action: "use server", slow, delete, revalidate
-
-Completely composable and standardized SubmitButton for our application. Pretty amazing. Power of RSC.
+- Let's talk about the reusability, what if I want this same pattern other places in my app. IsPending is nice, not resuable. Maybe I'm not even using useActionState. Extract this logic to a submitButton component. Cut and paste the button, leave SubmitButton. "Send".
+- Paste as ui/SubmitButton.
+- Somehow get the pending value from somewhere else. Another react 19 hook: useFormStatus. Returns the data, pending, action, method. All comes from the parent form, using it as a provider. Use pending in the submitButton.
+- Add "use client" to use this hook for client side interactivity
+- If its pending, return a styled div with a spinner and the children, otherwise children.
+- You can generalize more and extend the button element, and add a additional loading prop for triggering it in multiple ways.
+- Test the button. Spinning. The real key: thrown into any component, even server component. Add to MessageBox.
+- New form with action, resetMessages, inline server action for efficiency: "use server", slow, deleteMany, revalidate
+- Handling its own pending state even from the server, button is completely composable. Pretty amazing. Power of RSC.
 
 ## Optimistic update
 
-- Stash current code
-- Switch branch
-- Show code for messagebox and messages
-- Show messageInput and explain how it works, action fallback
-- Send multiple messages slowly, then many until it fails
+- One more thing to show. Stash current code, switch branch
+- I have been progressively enhancing it further. I added a "messages",  getting the messages from the server.
+- Client component, use react 19 useOptimistic. Takes in a state to show action is pending, and an update function, defining how to do the optimistic update. In this case, adding isSending:true to the optimistic messages.
+- Returns optimistic messages, and a function to trigger it. Passing this to the MessageInput.
+- Added another progressive enhancement with an onSubmit, leaving the previous action as a fallback. So if the form is hydrated by js, we will trigger the optimistic update. In onsubmit, trigger the optimistic update, reset form maintain default value.
+- Now when I use this, add "optimistic", im getting optimistic update, displaying sending while the action is pending. This is the client state, as the server returns with the "truth" it will throw away the client state and settle to the server state.
+- Send multiple messages, then many until it fails. Whatever doesn't exist on the server is removed because it's only temporary client state that doesn't exist on the server.
 
-Notes: Can even enhance this further with optimistic updates. This still works without js. Adding an onSubmit for client-side js only functionality, use a state with defaultvalue maintain the progressive enhancement.
+## Bottom line
 
-Of course, depending on your app you can decide how to implement forms and whether you still want your react-hook form or formik or whatnot, but by using the the more primitive features of the web together with React 19 and React Server Components, we can make our forms very robust and while maintaining a great user experience. And there is alot more to come from these. They will be primitives for libraries simpliying things for developers, focus on building apps.
+Of course, depending on your app you can decide how to implement forms and whether you still want your react-hook form and whatnot, but by using the the more primitive features of the web together with React 19 and React Server Components, we can make our forms very robust and while maintaining a great user experience. And there is a lot more to come from these. They will be primitives for libraries simplifying things for developers, focus on building apps.
+
+## (Conclusion)
 
 That's it for this demo, the code is pinned on my GitHub and the optimistic update is on a branch, and follow me on Twitter if you are interested in more rsc content. Thanks for listening and thanks React Universe Conf!
