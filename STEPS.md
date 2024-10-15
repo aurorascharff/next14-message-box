@@ -112,11 +112,13 @@
 
 - One more thing to show. Stash current code, switch branch
 - I have been progressively enhancing it further. I added a "messages",  getting the messages from the server.
-- Client component, use react 19 useOptimistic. Takes in a state to show action is pending, and an update function, defining how to do the optimistic update. In this case, adding isSending:true to the optimistic messages.
+- Client component, use react 19 useOptimistic. Takes in a state to show action is pending, and an update function or reducer function, defining how to do the optimistic update. In this case, adding isSending:true to the optimistic messages.
 - Returns optimistic messages, and a function to trigger it. Passing this to the MessageInput.
 - Added another progressive enhancement with an onSubmit, leaving the previous action as a fallback. So if the form is hydrated by js, we will trigger the optimistic update. In onsubmit, trigger the optimistic update, reset form maintain default value.
 - Now when I use this, add "optimistic", im getting optimistic update, displaying sending while the action is pending. This is the client state, as the server returns with the "truth" it will throw away the client state and settle to the server state.
 - Send multiple messages, then many until it fails. Whatever doesn't exist on the server is removed because it's only temporary client state that doesn't exist on the server.
+
+Note: Why do I need transition: handle errors safely, keep UI responsive, mark as non-urgent, “server actions should be called inside transitions”, “optimisticUI should be called inside transitions” so that the useOptimistic can know the state of the action, useOptimistic now will trigger immediately Opt out of the transition with useOptimistic.
 
 ## Bottom line
 
