@@ -25,7 +25,7 @@
 - Submit to db, type "as string", leave "createdById", add hidden userId field. Mention .bind as an way to pass additional props.
 - Disclaimer: Don't pass userId from the client, this is an example, server-side auth setup
 - Submit, refresh page, revalidatePath purge cache and regenerate all server components for this page, submit again.
-- Just by doing that, using native forms rather than buttons with onClicks, had we used the onSubmit we would need React to have hydrated this page to be able to submit the form.
+- Just by doing that, using native forms rather, had we used the onSubmit we would need React to have hydrated this page to be able to submit the form.
 
 ## Add scroll handler in AutomaticScroller
 
