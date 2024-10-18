@@ -32,7 +32,7 @@
 - Did you notice, I'm stuck in this scroll position, I can't see the new messages.
 - To fix that, messageBox, replace with automaticscoller
 - Client component with effect, scroll bottom new child. Clearly client, since its using children (could be any other prop), we can put server comp inside without converting them. Only the js fro the scroll handler is shipped.
-- Try it out, scroll. Check devtools: no messageDisplays inside the devtools, only scroller, the other are server components.
+- Try it out, scroll. Check devtools: new update to devtools just recently, we can actually see server components in the devtools. Only the scroller is client.
 
 ## Validate data in submitMessage
 
