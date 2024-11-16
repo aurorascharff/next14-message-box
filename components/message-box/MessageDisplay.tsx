@@ -2,7 +2,7 @@
 
 import React from 'react';
 import toast from 'react-hot-toast';
-import { submitMessage } from '@/lib/actions/submitMessage';
+import { submitMessage } from '@/data/actions/submitMessage';
 import type { OptimisticMessage } from '@/providers/MessagesProvider';
 import { useMessages } from '@/providers/MessagesProvider';
 import { cn } from '@/utils/cn';
