@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "prisma.studio": "npx prisma studio",
-    "prisma.seed": "npx prisma db seed",
+    "prisma.seed": "tsx prisma/seed.ts",
     "prisma.migrate": "npx prisma migrate dev",
     "prisma.push": "npx prisma db push"
   },
@@ -43,10 +43,7 @@
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.14",
     "prisma": "^5.12.1",
-    "ts-node": "^10.9.2",
+    "tsx": "^4.19.2",
     "tsconfig-paths": "^4.2.0"
-  },
-  "prisma": {
-    "seed": "ts-node prisma/seed.ts"
   }
 }
