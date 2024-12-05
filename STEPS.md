@@ -122,7 +122,7 @@ Note: Why do I need transition: handle errors safely, keep UI responsive, mark a
 
 ## Bottom line
 
-Of course, depending on your app you can decide how to implement forms and whether you still want your react-hook form and whatnot, but by using the the more primitive features of the web together with React 19 and React Server Components, we can make our forms very robust and while maintaining a great user experience. And there is a lot more to come from these. They will be primitives for libraries simplifying things for developers, focus on building apps.
+Of course, depending on your app you can decide how to implement forms and whether you still want your react-hook form and whatnot, but React now provides another option, by using the the more primitive features of the web together with React 19 and React Server Components, we can make our forms very robust and while maintaining a great user experience. And there is a lot more to come from these. They will be primitives for libraries simplifying things for developers, focus on building apps.
 
 ## (Conclusion)
 
