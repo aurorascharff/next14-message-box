@@ -12,7 +12,7 @@
 - I'm here in the Next.js App router, prisma as ORM and local DB, tailwind CSS.
 - Since I'm in the App Router, everything is a server component my default.
 - Message box is a server component, will never run on the client, and it can be async component and asynchronously fetching messages, map to message display, and a message input.
-- This is now only server components, but what I'm doing here can be done with client apps with a little more work to create endpoints.
+- This is now only server components, but what I'm doing here can be done with client apps with a little more work to create endpoints. No js on the client for any of these components.
 - Lets enhance this message box with rsc and react 19! Goal: make it interactive while minimizing js on the client and reducing frontend complexity.
 
 ## Make the MessageInput form work with an action
