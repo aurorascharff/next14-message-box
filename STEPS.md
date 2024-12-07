@@ -12,7 +12,7 @@
 - I'm here in the Next.js App router, prisma as ORM and local DB, tailwind CSS.
 - Since I'm in the App Router, everything is a server component my default.
 - Message box is a server component, will never run on the client, and it can be async component and asynchronously fetching messages, map to message display, and a message input.
-- This is now only server components, but what I'm doing here can be done with client apps with a little more work to create endpoints.
+- This is now only server components, but what I'm doing here can be done with client apps with a little more work to create endpoints. No js on the client for any of these components.
 - Lets enhance this message box with rsc and react 19! Goal: make it interactive while minimizing js on the client and reducing frontend complexity.
 
 ## Make the MessageInput form work with an action
@@ -122,7 +122,7 @@ Note: Why do I need transition: handle errors safely, keep UI responsive, mark a
 
 ## Bottom line
 
-Of course, depending on your app you can decide how to implement forms and whether you still want your react-hook form and whatnot, but by using the the more primitive features of the web together with React 19 and React Server Components, we can make our forms very robust and while maintaining a great user experience. And there is a lot more to come from these. They will be primitives for libraries simplifying things for developers, focus on building apps.
+Of course, depending on your app you can decide how to implement forms and whether you still want your react-hook form and whatnot, but React now provides another option, by using the the more primitive features of the web together with React 19 and React Server Components, we can make our forms very robust and while maintaining a great user experience. And there is a lot more to come from these. They will be primitives for libraries simplifying things for developers, focus on building apps.
 
 ## (Conclusion)
 
