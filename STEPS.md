@@ -19,13 +19,13 @@
 
 - Lets start with the basic functionality. Make the form work.
 - Attach action prop using React 19s extension of the form element, bind to a function, in this case a server function. When called with a function, behaves differently than native form, can be called without js.
-- This could be an action on the client, but since we're using server components, we can pass a server function instead. Server function auto wrapped in transition.
+- This could be an action on the client, but since we're using server components, we can pass a server function instead. Function auto wrapped in transition.
 - Create submitMessage server function, data access layer /actions. Define server functions with "use server", allowing the functions inside this file to be "exposed to the client" and call server code from the client, next.js essentially creates a hidden API endpoint for the functions in this file.
 - Takes in type formData, what this means is that each field will be submitted with its value inside this formData object. Get by name.
 - Submit to db, type "as string", leave "createdById", add hidden userId field. Mention .bind as an way to pass additional props.
 - Disclaimer: Don't pass userId from the client, this is an example, server-side auth setup
 - Submit, refresh page, revalidatePath purge cache and regenerate all server components for this page, submit again.
-- Just by doing that, using native forms rather, had we used the onSubmit we would need React to have hydrated this page to be able to submit the form.
+- Just by doing that we can submit the form to the backend, just using native forms, no mess with api endpoints and preventDefault. Had we used the onSubmit we would need React to have hydrated this page to be able to submit the form.
 
 ## Add scroll handler in AutomaticScroller
 
