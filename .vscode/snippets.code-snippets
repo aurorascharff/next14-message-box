@@ -39,6 +39,13 @@
 			"</ErrorBoundary>"
 		],
 	},
+	"importErrorBoundary": {
+		"scope": "typescriptreact",
+		"prefix": "importErrorBoundary",
+		"body": [
+			"import { ErrorBoundary } from 'react-error-boundary';"
+		],
+	},
 	"styledDiv": {
 		"scope": "typescriptreact",
 		"prefix": "styledDiv",
